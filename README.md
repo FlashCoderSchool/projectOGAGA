@@ -28,7 +28,7 @@ The following optional features are implemented:
 
 ## Authors
 
-* [](https://github.com/carot264)
+* [.](https://github.com/carot264)
 
 ## License
 
