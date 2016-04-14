@@ -28,11 +28,11 @@ The following optional features are implemented:
 
 ## Authors
 
-* [lasthulk](https://github.com/lasthulk)
+* [](https://github.com/carot264)
 
 ## License
 
-    Copyright [2016] [Superman Group]
+    Copyright [2016] [DNH Group]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
