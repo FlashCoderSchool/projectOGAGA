@@ -40,4 +40,7 @@ public class Catalogies {
         this.description = description;
         this.url = url;
     }
+
+    public Catalogies() {
+    }
 }

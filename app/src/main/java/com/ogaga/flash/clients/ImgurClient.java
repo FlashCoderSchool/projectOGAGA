@@ -18,6 +18,10 @@ import java.lang.ref.WeakReference;
  * Created by Kanet on 4/13/2016.
  */
 public class ImgurClient {
+    public interface ImgurClientListener{
+        public void postUploadImage(ImageResponse imageResponse);
+    }
+    private ImgurClientListener listener;
     public static final boolean LOGGING = false;
     private static String CLIENTS_ID="6ff577b2e93264f";
     private static String CLIENTS_SECRET="9896e4f455452bda120cd037636025028e3e9649";
@@ -25,8 +29,9 @@ public class ImgurClient {
     public ImageResponse mImageResponse;
     private WeakReference<Context> mContext;
 
-    public ImgurClient(Context context) {
+    public ImgurClient(Context context,ImgurClientListener listener) {
         this.mContext = new WeakReference<>(context);
+        this.listener=listener;
     }
 
     public static String getClientAuth() {
@@ -71,6 +76,7 @@ public class ImgurClient {
                         */
                         if (imageResponse.success) {
                             mImageResponse=imageResponse;
+                            listener.postUploadImage(imageResponse);
                         }
                     }
 

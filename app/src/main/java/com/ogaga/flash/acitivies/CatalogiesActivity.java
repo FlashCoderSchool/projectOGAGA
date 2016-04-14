@@ -12,9 +12,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+import com.firebase.ui.FirebaseListAdapter;
+import com.firebase.ui.FirebaseRecyclerAdapter;
 import com.ogaga.flash.R;
 import com.ogaga.flash.clients.FirebaseClient;
 import com.ogaga.flash.clients.ImgurClient;
@@ -22,25 +31,30 @@ import com.ogaga.flash.helpers.DocumentHelper;
 import com.ogaga.flash.imgurmodel.ImageResponse;
 import com.ogaga.flash.imgurmodel.Upload;
 import com.ogaga.flash.models.Catalogies;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class CatalogiesActivity extends AppCompatActivity {
+    FirebaseListAdapter<Catalogies> firebaseAdapter;
     Firebase firebase;
+    @Bind(R.id.lvCatalogies)ListView lvCatalogies;
     // PICK_PHOTO_CODE is a constant integer
     public final static int PICK_PHOTO_CODE = 1046;
-    public ImageResponse imageResponse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogies);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ButterKnife.bind(this);
         Firebase.setAndroidContext(this);
         firebase=FirebaseClient.getCatalogies();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -48,16 +62,30 @@ public class CatalogiesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onPickPhoto(view);
-                if (imageResponse!=null){
-                    Catalogies catalogies = new Catalogies(1, "food", System.currentTimeMillis(), "null", imageResponse.data.link);
-                    firebase.push().setValue(catalogies);
-                }
-                /*Catalogies catalogies = new Catalogies(1, "food", System.currentTimeMillis(), "null", null);
-                firebase.push().setValue(catalogies);*/
             }
         });
+        popularView();
 
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        firebaseAdapter.cleanup();
+    }
+
+    public void popularView(){
+        firebaseAdapter = new FirebaseListAdapter<Catalogies>(this, Catalogies.class,
+                R.layout.catalogies_item, firebase) {
+            @Override
+            protected void populateView(View v, Catalogies model, int position) {
+                ImageView ivPhoto=(ImageView) v.findViewById(R.id.ivPicture);
+                Picasso.with(getApplicationContext()).load(model.getUrl()).into(ivPhoto);
+                ((TextView)v.findViewById(R.id.tvName)).setText(model.getName());
+            }
+
+        };
+        lvCatalogies.setAdapter(firebaseAdapter);
     }
     public void onPickPhoto(View view) {
         // Create intent for picking a photo from the gallery
@@ -107,16 +135,13 @@ public class CatalogiesActivity extends AppCompatActivity {
                         upload.image = new File(DocumentHelper.getPath(this, photoUri));
                         upload.title = "abc";
                         upload.description = "abc";
-                        imageResponse=new ImgurClient(this).Execute(upload, new UiCallback());
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        if (imageResponse!=null){
-                            Catalogies catalogies = new Catalogies(1, "food", System.currentTimeMillis(), "null", imageResponse.data.link);
-                            firebase.push().setValue(catalogies);
-                        }
+                        new ImgurClient(this, new ImgurClient.ImgurClientListener() {
+                            @Override
+                            public void postUploadImage(ImageResponse imageResponse) {
+                                Catalogies catalogies = new Catalogies(1, "food", System.currentTimeMillis(), "null", imageResponse.data.link);
+                                firebase.push().setValue(catalogies);
+                            }
+                        }).Execute(upload, new UiCallback());
                     }catch (IOException e){
                         e.printStackTrace();
                     }
