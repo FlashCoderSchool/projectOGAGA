@@ -1,0 +1,50 @@
+# Final Project - Project OGAGA
+
+This is an android app that allows users to .....
+
+## User Stories
+
+The following features will be implemented in the first version:
+
+* [ ]	...
+* [ ]	...
+* [ ] ....
+ 
+
+The following optional features are implemented:
+* [ ]	S
+* [ ]	C
+* [ ]	U
+
+##The wireframe:
+
+<img src='http://i.imgur.com/hnMwj2k333.png' title='Image 1' width='' alt='Video Walkthrough' />
+
+<img src='http://i.imgur.com/HkZd2BH333.png' title='Image 2' width='' alt='Video Walkthrough' />
+
+<img src='http://i.imgur.com/07aeReo33.png' title='Image 3' width='' alt='Video Walkthrough' />
+
+<img src='http://i.imgur.com/Ky5AMk533.png' title='Image 4' width='' alt='Video Walkthrough' />
+
+## Authors
+
+* [lasthulk](https://github.com/lasthulk)
+
+## License
+
+    Copyright [2016] [Superman Group]
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+
+
