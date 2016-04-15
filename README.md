@@ -24,6 +24,8 @@ The following optional features are implemented:
 
 <img src='http://imgur.com/fcJYMbe.png' title='Categories' width='' alt='Video Walkthrough' /><img src='http://imgur.com/OhSJIbb.png' title='Categories' width='' alt='Video Walkthrough' />
 
+<img src='http://imgur.com/F8RWtyT.png' title='Categories' width='' alt='Video Walkthrough' /><img src='http://imgur.com/q5XBNt1.png' title='Categories' width='' alt='Video Walkthrough' />
+
 ## Authors
 
 * [.](https://github.com/carot264)
