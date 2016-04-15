@@ -1,20 +1,24 @@
 # Final Project - Project OGAGA
 
-This is an android app that allows users to .....
+This app support transaction method for the suppliers and buyes with purpose that
+- the sallers can sale their products at right prices
+- the buyers can buy product they need with the best quanlity and reasonable price
+- Support main product catalogies are: vegetables, Seafood, Meat, Organic fruit
 
 ## User Stories
 
 The following features will be implemented in the first version:
 
-* [ ]	...
-* [ ]	...
-* [ ] ....
+* [ ]	User can register product items information that they want to sale
+* [ ]	User can register their information
+* [ ] Following products they care
+* [ ] Order products 
  
 
 The following optional features are implemented:
-* [ ]	S
-* [ ]	C
-* [ ]	U
+* [ ]	Shipping & Delivery
+* [ ]	Chart of Product status, feedback comment for Product quanlity
+* [ ]	Map location for nearest sallers.
 
 ##The wireframe:
 
