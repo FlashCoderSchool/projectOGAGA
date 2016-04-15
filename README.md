@@ -18,9 +18,9 @@ The following optional features are implemented:
 
 ##The wireframe:
 
-<img src='http://imgur.com/KVNnvJM.png' title='Image 1' width='' alt='Video Walkthrough' />
+<img src='' title='Image 1' width='' alt='Video Walkthrough' />
 
-<img src='http://http://imgur.com/wtrZbUR.png' title='Image 2' width='' alt='Video Walkthrough' />
+<img src='' title='Image 2' width='' alt='Video Walkthrough' />
 
 <img src='http://i.imgur.com/07aeReo33.png' title='Image 3' width='' alt='Video Walkthrough' />
 
