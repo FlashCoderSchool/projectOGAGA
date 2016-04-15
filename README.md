@@ -19,12 +19,9 @@ The following optional features are implemented:
 ##The wireframe:
 
 <img src='http://imgur.com/KVNnvJM.png' title='Categories' width='' alt='Video Walkthrough' /><img src='http://imgur.com/wtrZbUR.png' title='Product List in a category)  2' width='' alt='Video Walkthrough' />
-
 <img src='http://imgur.com/z1mC0Yu.png' title='Product Detail' width='' alt='Video Walkthrough' /><img src='http://imgur.com/YXRyQox.png' title='Image 4' width='' alt='Video Walkthrough' />
-
 <img src='http://imgur.com/fcJYMbe.png' title='Categories' width='' alt='Video Walkthrough' /><img src='http://imgur.com/OhSJIbb.png' title='Categories' width='' alt='Video Walkthrough' />
-
-<img src='http://imgur.com/F8RWtyT.png' title='Categories' width='' alt='Video Walkthrough' /><img src='http://imgur.com/q5XBNt1.png' title='Categories' width='' alt='Video Walkthrough' />
+<img src='http://imgur.com/F8RWtyT.png' title='Categories' width='' alt='Video Walkthrough'/><img src='http://imgur.com/q5XBNt1.png' title='Categories' width='' alt='Video Walkthrough' />
 
 ## Authors
 
