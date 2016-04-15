@@ -22,10 +22,26 @@ The following optional features are implemented:
 
 ##The wireframe:
 
+| Screen  | Name | Archetype | Description |
+| ------------- | :---: | :---: | :---  | :---  |
+| ![category](http://imgur.com/KVNnvJM.png) | Categories Screen | Stream | main screen |
+| ![productsList](http://imgur.com/wtrZbUR.png) | Products List | Stream | View product list |
+| ![productDetails](http://imgur.com/z1mC0Yu.png) | Product Detail | Detail | View product information and order action  |
+| ![orderList](http://imgur.com/YXRyQox.png) | Order List | Stream | View cart list  |
+| ![profileSellList](http://imgur.com/fcJYMbe.png) | Profile Sell List | Stream | View user sell list  |
+| ![profileBuyList](http://imgur.com/OhSJIbb.png) | Profile Buy List | Stream | View user buy list  |
+| ![sellProduct](http://imgur.com/F8RWtyT.png) | Sell | Create | View user buy list  |
+| ![sellProduct](http://imgur.com/q5XBNt1.png) | Sell Description | Detail| add  sell item description  |
+
+
+
 <img src='http://imgur.com/KVNnvJM.png' title='Categories' width='' alt='Video Walkthrough' /><img src='http://imgur.com/wtrZbUR.png' title='Product List in a category)  2' width='' alt='Video Walkthrough' />
 <img src='http://imgur.com/z1mC0Yu.png' title='Product Detail' width='' alt='Video Walkthrough' /><img src='http://imgur.com/YXRyQox.png' title='Image 4' width='' alt='Video Walkthrough' />
 <img src='http://imgur.com/fcJYMbe.png' title='Categories' width='' alt='Video Walkthrough' /><img src='http://imgur.com/OhSJIbb.png' title='Categories' width='' alt='Video Walkthrough' />
 <img src='http://imgur.com/F8RWtyT.png' title='Categories' width='' alt='Video Walkthrough'/><img src='http://imgur.com/q5XBNt1.png' title='Categories' width='' alt='Video Walkthrough' />
+
+### State Machine
+![transitions](/images/Transitions.png)
 
 ## License
 
