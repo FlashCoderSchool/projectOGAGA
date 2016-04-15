@@ -22,8 +22,6 @@ The following optional features are implemented:
 
 <img src='http://imgur.com/z1mC0Yu.png' title='Product Detail' width='' alt='Video Walkthrough' /><img src='http://i.imgur.com/Ky5AMk533.png' title='Image 4' width='' alt='Video Walkthrough' />
 
-<img src='http://imgur.com/YXRyQox.png' title='Image 4' width='' alt='Video Walkthrough' />
-
 <img src='http://imgur.com/fcJYMbe.png' title='Categories' width='' alt='Video Walkthrough' /><img src='http://imgur.com/OhSJIbb.png' title='Categories' width='' alt='Video Walkthrough' />
 
 ## Authors
