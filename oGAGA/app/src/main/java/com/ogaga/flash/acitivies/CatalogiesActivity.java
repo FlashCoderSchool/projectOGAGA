@@ -31,6 +31,7 @@ import com.ogaga.flash.helpers.DocumentHelper;
 import com.ogaga.flash.imgurmodel.ImageResponse;
 import com.ogaga.flash.imgurmodel.Upload;
 import com.ogaga.flash.models.Catalogies;
+import com.ogaga.flash.models.UiCallback;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -61,7 +62,10 @@ public class CatalogiesActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onPickPhoto(view);
+                //onPickPhoto(view);
+                Intent intent=new Intent(CatalogiesActivity.this,UserRegistryActivity.class);
+                startActivity(intent);
+
             }
         });
         popularView();
@@ -96,7 +100,7 @@ public class CatalogiesActivity extends AppCompatActivity {
         // So as long as the result is not null, it's safe to use the intent.
         if (intent.resolveActivity(getPackageManager()) != null) {
             // Bring up gallery to select a photo
-            startActivityForResult(intent, PICK_PHOTO_CODE);
+            startActivityForResult(intent, R.integer.PICK_PHOTO_CODE);
         }
     }
     @Override
@@ -114,16 +118,16 @@ public class CatalogiesActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+      /*  if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PICK_PHOTO_CODE) {
+        if (requestCode == R.integer.PICK_PHOTO_CODE) {
             if (resultCode == RESULT_OK) {
                 if (data != null) {
                     try{
@@ -152,19 +156,5 @@ public class CatalogiesActivity extends AppCompatActivity {
         }
 
     }
-    private class UiCallback implements Callback<ImageResponse> {
 
-        @Override
-        public void success(ImageResponse imageResponse, Response response) {
-
-        }
-
-        @Override
-        public void failure(RetrofitError error) {
-            //Assume we have no connection, since error is null
-            if (error == null) {
-                //Snackbar.make(findViewById(R.id.rootView), "No internet connection", Snackbar.LENGTH_SHORT).show();
-            }
-        }
-    }
 }
