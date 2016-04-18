@@ -17,5 +17,10 @@ public class FirebaseClient {
         return  mFirebaseRef;
     }
 
+    public static Firebase getUsers(){
+        Firebase mFirebaseRef= new Firebase("https://ogaga.firebaseio.com").child("users");
+        return  mFirebaseRef;
+    }
+
 
 }
