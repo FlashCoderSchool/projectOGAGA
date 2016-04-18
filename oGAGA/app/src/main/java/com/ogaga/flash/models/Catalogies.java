@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 /**
  * Created by Kanet on 4/13/2016.
  */
+
 public class Catalogies {
 
     private long id;
@@ -12,6 +13,30 @@ public class Catalogies {
     private long created_at;
     private String description;
     private String url;
+    private int localImage;
+    public Catalogies(long id, String name, long created_at, String description, String url) {
+        this.id = id;
+        this.name = name;
+        this.created_at = created_at;
+        this.description = description;
+        this.url = url;
+    }
+
+    public Catalogies() {
+    }
+
+    public Catalogies(String name, int localImage) {
+        setLocalImage(localImage);
+        setName(name);
+    }
+
+    public int getLocalImage() {
+        return localImage;
+    }
+
+    public void setLocalImage(int localImage) {
+        this.localImage = localImage;
+    }
 
     public long getId() {
         return id;
@@ -19,6 +44,10 @@ public class Catalogies {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public long getCreated_at() {
@@ -31,16 +60,5 @@ public class Catalogies {
 
     public String getUrl() {
         return url;
-    }
-
-    public Catalogies(long id, String name, long created_at, String description, String url) {
-        this.id = id;
-        this.name = name;
-        this.created_at = created_at;
-        this.description = description;
-        this.url = url;
-    }
-
-    public Catalogies() {
     }
 }

@@ -1,34 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".acitivies.CatalogiesActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <!-- This LinearLayout represents the contents of the screen  -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <!-- The ActionBar displayed at the top -->
+        <include
+            layout="@layout/setting_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="wrap_content"
+            />
 
-    </android.support.design.widget.AppBarLayout>
+        <!-- The main content view where fragments are loaded
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvCate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:scrollbars="vertical" />-->
+        <ListView
+            android:id="@+id/lvCatalogies"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:scrollbars="vertical"
+            />
 
-    <include layout="@layout/content_catalogies" />
+    </LinearLayout>
+    <!-- The navigation drawer that comes from the left -->
+    <!-- Note that `android:layout_gravity` needs to be set to 'start' -->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nvView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/nav_header"
+        android:layout_gravity="start"
+        android:background="@android:color/white"
+        app:menu="@menu/drawer_view"
+        />
 
+   <!-- <include layout="@layout/content_catalogies" />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />
+        android:src="@android:drawable/ic_dialog_email" />-->
 
-</android.support.design.widget.CoordinatorLayout>
+</android.support.v4.widget.DrawerLayout>
