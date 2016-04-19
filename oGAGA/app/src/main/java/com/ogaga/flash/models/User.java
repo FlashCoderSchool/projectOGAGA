@@ -1,12 +1,35 @@
 package com.ogaga.flash.models;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.provider.SyncStateContract;
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.MutableData;
+import com.firebase.client.Query;
+import com.firebase.client.Transaction;
+import com.firebase.client.ValueEventListener;
+import com.firebase.client.core.Constants;
+import com.ogaga.flash.clients.FirebaseClient;
+import com.ogaga.flash.imgurmodel.ImageResponse;
+
+import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
+
+
 /**
  * Created by Kanet on 4/13/2016.
  */
+
 public class User {
+    public interface LoginUser{
+        public void onLoginSuccess(User user);
+    }
+    public LoginUser mListener;
     private long id;
     private String fullname;
-    private String username;
     private String profile_image;
     private String address_user;
     private String location;
@@ -14,6 +37,11 @@ public class User {
     private String phonenumber;
     private long success_transaction;
     private long created_at;
+    private String email;
+    public String getEmail() {
+        return this.phonenumber+"@ogaga.com";
+    }
+
 
     public long getId() {
         return id;
@@ -23,8 +51,8 @@ public class User {
         return fullname;
     }
 
-    public String getUsername() {
-        return username;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     public String getProfile_image() {
@@ -63,10 +91,6 @@ public class User {
         this.fullname = fullname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public void setProfile_image(String profile_image) {
         this.profile_image = profile_image;
     }
@@ -83,9 +107,6 @@ public class User {
         this.followed_count = followed_count;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
-    }
 
     public void setSuccess_transaction(long success_transaction) {
         this.success_transaction = success_transaction;
@@ -95,10 +116,9 @@ public class User {
         this.created_at = created_at;
     }
 
-    public User(long id, String fullname, String username, String profile_image, String address_user, String location, long followed_count, String phonenumber, long success_transaction, long created_at) {
+    public User(long id, String fullname, String profile_image, String address_user, String location, long followed_count, String phonenumber, long success_transaction, long created_at) {
         this.id = id;
         this.fullname = fullname;
-        this.username = username;
         this.profile_image = profile_image;
         this.address_user = address_user;
         this.location = location;
@@ -114,5 +134,25 @@ public class User {
         this.success_transaction = 0;
         this.created_at = System.currentTimeMillis();
     }
+
+    public void getUserLogin(String uid,LoginUser listener) {
+        this.mListener=listener;
+        Firebase mFirebaseUser=FirebaseClient.getUsers();
+        Query queryRef = mFirebaseUser.child(uid);
+        queryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                mListener.onLoginSuccess(user);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }
+
+
 
 }

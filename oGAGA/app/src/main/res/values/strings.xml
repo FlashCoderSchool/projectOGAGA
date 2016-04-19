@@ -14,4 +14,36 @@
     <string name="address_user">Địa chỉ</string>
     <string name="upload_image">Chọn hình ảnh</string>
     <string name="title_activity_time_line">TimeLineActivity</string>
+    <string name="password">Mật khẩu</string>
+    <string name="registry_user">Tạo tài khoản</string>
+    <string name="confirm_password">Xác nhận mậu khẩu</string>
+    <string name="registry_success">Đăng ký thành công</string>
+    <string name="login_fails">Tài khoản không tồn tại</string>
+    <string name="login_success">Đăng nhập thành công</string>
+    <!-- TODO: Product label -->
+    <string name="product_name">Tên sản phẩm</string>
+    <string name="product_price">Giá trên đơn vị</string>
+    <string name="product_quanlity">Đơn vị</string>
+    <string name="product_status">Trạng thái</string>
+    <string name="product_min_salequanlity">Số lượng thấp nhất</string>
+    <string name="product_startat">Ngày bắt đầu</string>
+    <string name="product_bestfor">Thời hạn sử dụng</string>
+    <string name="product_finished_date">Ngày kết thúc</string>
+    <string name="product_type">Loại sản phẩm</string>
+    <string name="product_description">Đăng nhập thành công</string>
+    <string-array name="product_type">
+        <item>Cá</item>
+        <item>Rau</item>
+        <item>Thực phẩm</item>
+    </string-array>
+    <string-array name="product_status">
+        <item>Bắt đầu làm</item>
+        <item>Đang phát triển</item>
+        <item>Bán ngay</item>
+        <item>Hết hàng</item>
+    </string-array>
+    <string-array name="product_unit">
+        <item>Kg</item>
+        <item>Lít</item>
+    </string-array>
 </resources>

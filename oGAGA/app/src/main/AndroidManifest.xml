@@ -52,6 +52,8 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".acitivies.UserRegistryActivity" />
+        <activity android:name=".acitivies.LoginActivity" />
+        <activity android:name=".acitivies.SellActivity"></activity>
     </application>
 
 </manifest>
