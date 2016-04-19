@@ -9,9 +9,4 @@
     tools:context=".acitivies.CatalogiesActivity"
     tools:showIn="@layout/activity_catalogies">
 
-    <ListView
-        android:id="@+id/lvCatalogies"
-        android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
 </RelativeLayout>

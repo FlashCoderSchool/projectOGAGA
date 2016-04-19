@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.firebase.client.Firebase;
 import com.firebase.ui.FirebaseListAdapter;
 import com.ogaga.flash.R;
+import com.ogaga.flash.adapters.CategoryAdapter;
 import com.ogaga.flash.clients.FirebaseClient;
 import com.ogaga.flash.clients.ImgurClient;
 import com.ogaga.flash.helpers.DocumentHelper;
@@ -40,6 +41,8 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -49,20 +52,16 @@ public class CatalogiesActivity extends AppCompatActivity {
 
     // PICK_PHOTO_CODE is a constant integer
     public final static int PICK_PHOTO_CODE = 1046;
-    FirebaseListAdapter<Catalogies> firebaseAdapter;
     Firebase firebase;
-    //@Bind(R.id.rvCate)
-    //RecyclerView rvCate;
-    // private ArrayList<Catalogies> cateList;
-    // private CategoryAdapter cateAdapter;
-    @Bind(R.id.lvCatalogies)
-    ListView lvCatalogies;
+    @Bind(R.id.rvCate)
+    RecyclerView rvCate;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawer;
     @Bind(R.id.nvView)
     NavigationView nvDrawer;
+    private CategoryAdapter cateAdapter;
     private ActionBarDrawerToggle drawerToggle;
 
     @Override
@@ -108,47 +107,20 @@ public class CatalogiesActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        firebaseAdapter.cleanup();
+        cateAdapter.cleanup();
     }
 
     public void popularView() {
-
-        firebaseAdapter = new FirebaseListAdapter<Catalogies>(this, Catalogies.class,
-                R.layout.catalogies_item, firebase) {
-            @Override
-            protected void populateView(View v, Catalogies model, int position) {
-                ImageView ivPhoto = (ImageView) v.findViewById(R.id.ivPicture);
-                Picasso.with(getApplicationContext()).load(model.getUrl()).into(ivPhoto);
-                ((TextView) v.findViewById(R.id.tvName)).setText(model.getName());
-            }
-
-        };
-        //get category list
-        //getItems();
-        //rvCate.setHasFixedSize(true);
-        // ListView
-        // rvCate.setLayoutManager(new LinearLayoutManager(this));
-        // create an Object for Adapter
-        //cateAdapter = new CategoryAdapter(cateList);
-        //rvCate.setAdapter(cateAdapter);*/
-        lvCatalogies.setAdapter(firebaseAdapter);
+        cateAdapter = new CategoryAdapter(firebase, this);
+        rvCate.setHasFixedSize(true);
+        rvCate.setLayoutManager(new LinearLayoutManager(this));
+        rvCate.setAdapter(cateAdapter);
     }
-    /*public void  getItems(){
-        cateList = new ArrayList<>();
-        final String[] cates = {"Organic fruit", "Vegetables", "Seafood"};
-        final int[] images = {R.drawable.fruit,R.drawable.vegetable,R.drawable.fish};
-        for (int i = 0; i < cates.length; i++) {
-            Catalogies cate = new Catalogies(cates[i],images[i]);
-            cateList.add(cate);
-        }
-    }*/
-
 
     public void onPickPhoto(View view) {
         // Create intent for picking a photo from the gallery
         Intent intent = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
         // So as long as the result is not null, it's safe to use the intent.
         if (intent.resolveActivity(getPackageManager()) != null) {
@@ -166,7 +138,7 @@ public class CatalogiesActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // `onPostCreate` called when activity start-up is complete after `onStart()`
+    // onPostCreate` called when activity start-up is complete after `onStart()`
     // NOTE! Make sure to override the method with only a single `Bundle` argument
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -175,6 +147,7 @@ public class CatalogiesActivity extends AppCompatActivity {
         drawerToggle.syncState();
 
     }
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -213,7 +186,6 @@ public class CatalogiesActivity extends AppCompatActivity {
         }
 
     }
-
     /*Functions*/
     private ActionBarDrawerToggle setupDrawerToggle() {
         return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close);

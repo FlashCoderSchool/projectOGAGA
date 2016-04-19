@@ -22,21 +22,22 @@
             android:layout_height="wrap_content"
             />
 
-        <!-- The main content view where fragments are loaded
+        <!-- The main content view where fragments are loaded-->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvCate"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:scrollbars="vertical" />-->
-        <ListView
-            android:id="@+id/lvCatalogies"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:scrollbars="vertical" />
+    <!--<ListView
+        android:id="@+id/lvCatalogies"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />-->
 
-    </LinearLayout>
-    <!-- The navigation drawer that comes from the left -->
+
+</LinearLayout>
+<!-- The navigation drawer that comes from the left -->
     <!-- Note that `android:layout_gravity` needs to be set to 'start' -->
     <android.support.design.widget.NavigationView
         android:id="@+id/nvView"

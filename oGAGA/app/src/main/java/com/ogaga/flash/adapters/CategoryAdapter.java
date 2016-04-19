@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.firebase.client.Firebase;
+import com.firebase.ui.FirebaseRecyclerAdapter;
 import com.ogaga.flash.R;
 import com.ogaga.flash.models.Catalogies;
 import com.squareup.picasso.Picasso;
@@ -20,46 +22,22 @@ import butterknife.ButterKnife;
 /**
  * Created by carot on 4/18/2016.
  */
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
+public class CategoryAdapter extends FirebaseRecyclerAdapter<Catalogies,CategoryAdapter.ViewHolder> {
 
-    private List<Catalogies> cateList;
+
     private Context context;
-
-    public CategoryAdapter(List<Catalogies> list) {
-        cateList = list;
+    public CategoryAdapter(Firebase ref, Context parentContext ) {
+        super(Catalogies.class, R.layout.catalogies_item, CategoryAdapter.ViewHolder.class, ref);
+        context = parentContext;
     }
-
     @Override
-    public CategoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
+    protected void populateViewHolder(ViewHolder viewHolder, Catalogies catalogies, int i) {
 
-        // Inflate the custom layout
-        View cateView = inflater.inflate(R.layout.catalogies_item, parent, false);
-
-        // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(cateView);
-        return viewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(CategoryAdapter.ViewHolder holder, int position) {
-
-        Catalogies cate = cateList.get(position);
-        holder.tvName.setText(cate.getName());
+         viewHolder.tvName.setText(catalogies.getName());
         //holder.ivImage.setImageResource(cate.getLocalImage());
-        Picasso.with(context).load(cate.getUrl()).into(holder.ivImage);
+         Picasso.with(context).load(catalogies.getUrl()).into(viewHolder.ivImage);
     }
-
-    @Override
-    public int getItemCount() {
-        if (cateList == null) {
-            return 0;
-        }
-        return cateList.size();
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+   public static class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.ivPicture)
         ImageView ivImage;
         @Bind(R.id.tvName)
