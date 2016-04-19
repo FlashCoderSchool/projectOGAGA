@@ -33,8 +33,6 @@
             android:id="@+id/lvCatalogies"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:scrollbars="vertical"
             />
 
     </LinearLayout>
@@ -47,16 +45,7 @@
         app:headerLayout="@layout/nav_header"
         android:layout_gravity="start"
         android:background="@android:color/white"
-        app:menu="@menu/drawer_view"
-        />
-
-   <!-- <include layout="@layout/content_catalogies" />
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />-->
+        app:menu="@menu/drawer_view">
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
