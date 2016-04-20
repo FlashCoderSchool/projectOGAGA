@@ -8,26 +8,17 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.view.View;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
-import com.firebase.ui.FirebaseListAdapter;
 import com.ogaga.flash.R;
 import com.ogaga.flash.adapters.CategoryAdapter;
 import com.ogaga.flash.clients.FirebaseClient;
@@ -37,12 +28,9 @@ import com.ogaga.flash.imgurmodel.ImageResponse;
 import com.ogaga.flash.imgurmodel.Upload;
 import com.ogaga.flash.models.Catalogies;
 import com.ogaga.flash.models.UiCallback;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -61,6 +49,9 @@ public class CatalogiesActivity extends AppCompatActivity {
     DrawerLayout mDrawer;
     @Bind(R.id.nvView)
     NavigationView nvDrawer;
+    @Bind(R.id.fabSell)
+    FloatingActionButton fabSell;
+
     private CategoryAdapter cateAdapter;
     private ActionBarDrawerToggle drawerToggle;
 
@@ -79,54 +70,27 @@ public class CatalogiesActivity extends AppCompatActivity {
                         //selectDrawerItem(menuItem);
                         switch (menuItem.getItemId()) {
                             case R.id.navSetting:
+                                Toast.makeText(CatalogiesActivity.this, "What will display in navigation setting?", Toast.LENGTH_SHORT).show();
                                 return true;
                             case R.id.navUserProfile:
                                 Intent intent = new Intent(CatalogiesActivity.this, UserRegistryActivity.class);
                                 startActivity(intent);
-
                         }
                         return true;
                     }
                 });
 
-
         Firebase.setAndroidContext(this);
         firebase = FirebaseClient.getCatalogies();
-        Button fab = (Button) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //onPickPhoto(view);
-                Intent intent = new Intent(CatalogiesActivity.this, SellActivity.class);
-                startActivity(intent);
-            }
-        });
+
         popularView();
+        onClickFABSell();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         cateAdapter.cleanup();
-    }
-
-    public void popularView() {
-        cateAdapter = new CategoryAdapter(firebase, this);
-        rvCate.setHasFixedSize(true);
-        rvCate.setLayoutManager(new LinearLayoutManager(this));
-        rvCate.setAdapter(cateAdapter);
-    }
-
-    public void onPickPhoto(View view) {
-        // Create intent for picking a photo from the gallery
-        Intent intent = new Intent(Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
-        // So as long as the result is not null, it's safe to use the intent.
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            // Bring up gallery to select a photo
-            startActivityForResult(intent, R.integer.PICK_PHOTO_CODE);
-        }
     }
 
     @Override
@@ -186,9 +150,41 @@ public class CatalogiesActivity extends AppCompatActivity {
         }
 
     }
+
     /*Functions*/
     private ActionBarDrawerToggle setupDrawerToggle() {
         return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close);
     }
+
+
+    public void popularView() {
+        cateAdapter = new CategoryAdapter(firebase, this);
+        rvCate.setHasFixedSize(true);
+        rvCate.setLayoutManager(new LinearLayoutManager(this));
+        rvCate.setAdapter(cateAdapter);
+    }
+
+    public void onClickFABSell() {
+        fabSell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CatalogiesActivity.this, SellActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void onPickPhoto(View view) {
+        // Create intent for picking a photo from the gallery
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+        // So as long as the result is not null, it's safe to use the intent.
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            // Bring up gallery to select a photo
+            startActivityForResult(intent, R.integer.PICK_PHOTO_CODE);
+        }
+    }
+
 
 }
