@@ -84,7 +84,7 @@ public class CatalogiesActivity extends AppCompatActivity {
         firebase = FirebaseClient.getCatalogies();
 
         popularView();
-        onClickFABSell();
+        onClickSellFAB();
     }
 
     @Override
@@ -164,7 +164,7 @@ public class CatalogiesActivity extends AppCompatActivity {
         rvCate.setAdapter(cateAdapter);
     }
 
-    public void onClickFABSell() {
+    public void onClickSellFAB() {
         fabSell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
