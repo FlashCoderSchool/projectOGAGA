@@ -247,6 +247,7 @@ public class SellActivity extends AppCompatActivity{
                             product.setCreate_at(System.currentTimeMillis());
                             product.setStart_date(mStartDate);
                             product.setFinished_date(mFinishedDate);
+                            product.setId_user(mUser.getId());
                             //Firebase firebaseProduct=firebaseProducts.child(String.valueOf(mUser.getId()));
                             firebaseProducts.push().setValue(product);
                             //

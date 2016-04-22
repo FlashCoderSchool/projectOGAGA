@@ -1,8 +1,11 @@
 package com.ogaga.flash.models;
 
+import org.parceler.Parcel;
+
 /**
  * Created by Kanet on 4/13/2016.
  */
+@Parcel
 public class Product {
     private long id;
     private String name;
@@ -15,6 +18,15 @@ public class Product {
     private long id_shipping;
     private long id_unit;
     private long id_productType;
+    private long id_user;
+
+    public long getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(long id_user) {
+        this.id_user = id_user;
+    }
 
     public long getId() {
         return id;
@@ -107,7 +119,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(long id, String name, String url, long prices, long id_productStatus, long create_at, long start_date, long finished_date, long id_shipping, int id_unit, long id_productType) {
+    public Product(long id, String name, String url, long prices, long id_productStatus, long create_at, long start_date, long finished_date, long id_shipping, int id_unit, long id_productType,long id_user) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -119,5 +131,6 @@ public class Product {
         this.id_shipping = id_shipping;
         this.id_unit = id_unit;
         this.id_productType = id_productType;
+        this.id_user=id_user;
     }
 }

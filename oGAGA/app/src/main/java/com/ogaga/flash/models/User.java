@@ -22,12 +22,8 @@ import org.parceler.ParcelConstructor;
 /**
  * Created by Kanet on 4/13/2016.
  */
-
+@Parcel
 public class User {
-    public interface LoginUser{
-        public void onLoginSuccess(User user);
-    }
-    public LoginUser mListener;
     private long id;
     private String fullname;
     private String profile_image;
@@ -134,25 +130,4 @@ public class User {
         this.success_transaction = 0;
         this.created_at = System.currentTimeMillis();
     }
-
-    public void getUserLogin(String uid,LoginUser listener) {
-        this.mListener=listener;
-        Firebase mFirebaseUser=FirebaseClient.getUsers();
-        Query queryRef = mFirebaseUser.child(uid);
-        queryRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                mListener.onLoginSuccess(user);
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-    }
-
-
-
 }
