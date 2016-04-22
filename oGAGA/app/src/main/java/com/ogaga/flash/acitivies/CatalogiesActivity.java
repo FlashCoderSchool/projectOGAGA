@@ -78,17 +78,18 @@ public class CatalogiesActivity extends AppCompatActivity {
                         //selectDrawerItem(menuItem);
                         switch (menuItem.getItemId()) {
                             case R.id.navSetting:
-                                Toast.makeText(CatalogiesActivity.this, "What will display in navigation setting?", Toast.LENGTH_SHORT).show();
-                                return true;
-                            case R.id.navUserProfile:
                                 Intent intent = new Intent(CatalogiesActivity.this, UserRegistryActivity.class);
-                                startActivityForResult(intent, getResources().getInteger(R.integer.LOGIN_SUCCESS_CODE));
+                                startActivity(intent);
+                                break;
+                            case R.id.navUserProfile:
+                                Intent intentSetting = new Intent(CatalogiesActivity.this, UserProfileActivity.class);
+                                startActivity(intentSetting);
+                                break;
                         }
                         return true;
                     }
                 });
         firebase = FirebaseClient.getCatalogies();
-
         popularView();
         onClickSellFAB();
     }
@@ -198,6 +199,4 @@ public class CatalogiesActivity extends AppCompatActivity {
             startActivityForResult(intent, R.integer.PICK_PHOTO_CODE);
         }
     }
-
-
 }
