@@ -33,10 +33,16 @@
     <string name="product_description">Đăng nhập thành công</string>
     <string-array name="product_type">
         <item>Cá</item>
+        <item>Trái cây</item>
         <item>Rau</item>
-        <item>Thực phẩm</item>
+        <item>Thực phẩm tại gia</item>
     </string-array>
-    <string-array name="product_status">
+    <string-array name="product_status_new">
+        <item>Bắt đầu làm</item>
+        <item>Đang phát triển</item>
+        <item>Bán ngay</item>
+    </string-array>
+    <string-array name="product_status_edit">
         <item>Bắt đầu làm</item>
         <item>Đang phát triển</item>
         <item>Bán ngay</item>

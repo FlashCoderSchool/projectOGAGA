@@ -16,7 +16,10 @@ import com.ogaga.flash.models.User;
  * Created by Kanet on 4/12/2016.
  */
 public class FirebaseClient {
-
+    public interface LoginUser{
+        public void onLoginSuccess(User user);
+    }
+    public static LoginUser mListener;
     public static Firebase getRoot(){
         Firebase mFirebaseRef= new Firebase("https://ogaga.firebaseio.com");
         return  mFirebaseRef;
@@ -32,17 +35,32 @@ public class FirebaseClient {
         return  mFirebaseRef;
     }
 
-    public static User Login(Context context){
-        String uid=AuthorHelper.readString(context, "uid");
-        final User[] mUser = {new User()};
-        mUser[0].getUserLogin(uid, new User.LoginUser() {
-            @Override
-            public void onLoginSuccess(User user) {
-                mUser[0] = user;
-            }
-        });
-
-        return mUser[0];
+    public static Firebase getProduct(){
+        Firebase mFirebaseRef= new Firebase("https://ogaga.firebaseio.com").child("products");
+        return  mFirebaseRef;
     }
 
+    public static User getUserLogin(Context context, LoginUser listener) {
+        String uid=AuthorHelper.readString(context, "uid");
+        mListener=listener;
+        if (uid==null){
+            mListener.onLoginSuccess(null);
+            return null;
+        }
+        Firebase mFirebaseUser=FirebaseClient.getUsers();
+        Query queryRef = mFirebaseUser.child(uid);
+        queryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                mListener.onLoginSuccess(user);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+        return null;
+    }
 }
