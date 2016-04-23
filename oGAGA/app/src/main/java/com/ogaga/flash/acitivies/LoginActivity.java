@@ -54,10 +54,10 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onAuthenticated(AuthData authData) {
                         // Authentication just completed successfully :)
-                        new User().getUserLogin(authData.getUid(), new User.LoginUser() {
+                        FirebaseClient.getUserLogin(getApplicationContext(), new FirebaseClient.LoginUser() {
                             @Override
                             public void onLoginSuccess(User user) {
-                                Intent intent=new Intent();
+                                Intent intent = new Intent();
                                 intent.putExtra("user", Parcels.wrap(user));
                                 setResult(getResources().getInteger(R.integer.LOGIN_SUCCESS_CODE), intent);
                                 Toast.makeText(getApplicationContext(), getResources().getText(R.string.login_success), Toast.LENGTH_LONG);

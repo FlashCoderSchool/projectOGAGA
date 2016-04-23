@@ -8,7 +8,7 @@
             android:icon="@android:drawable/ic_menu_preferences"/>
         <item
             android:id="@+id/navUserProfile"
-            android:title="User Registration"
+            android:title="User Profile"
             android:icon="@drawable/user"/>
     </group>
 </menu>

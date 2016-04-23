@@ -28,6 +28,9 @@ import com.ogaga.flash.imgurmodel.ImageResponse;
 import com.ogaga.flash.imgurmodel.Upload;
 import com.ogaga.flash.models.Catalogies;
 import com.ogaga.flash.models.UiCallback;
+import com.ogaga.flash.models.User;
+
+import org.parceler.Parcels;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,6 +57,7 @@ public class CatalogiesActivity extends AppCompatActivity {
 
     private CategoryAdapter cateAdapter;
     private ActionBarDrawerToggle drawerToggle;
+    private User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +65,11 @@ public class CatalogiesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_catalogies);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+        mUser=Parcels.unwrap(getIntent().getParcelableExtra("user"));
+        Firebase.setAndroidContext(this);
         drawerToggle = setupDrawerToggle();
+        firebase = FirebaseClient.getCatalogies();
+
         // Tie DrawerLayout events to the ActionBarToggle
         nvDrawer.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -70,19 +78,18 @@ public class CatalogiesActivity extends AppCompatActivity {
                         //selectDrawerItem(menuItem);
                         switch (menuItem.getItemId()) {
                             case R.id.navSetting:
-                                Toast.makeText(CatalogiesActivity.this, "What will display in navigation setting?", Toast.LENGTH_SHORT).show();
-                                return true;
-                            case R.id.navUserProfile:
                                 Intent intent = new Intent(CatalogiesActivity.this, UserRegistryActivity.class);
                                 startActivity(intent);
+                                break;
+                            case R.id.navUserProfile:
+                                Intent intentSetting = new Intent(CatalogiesActivity.this, UserProfileActivity.class);
+                                startActivity(intentSetting);
+                                break;
                         }
                         return true;
                     }
                 });
-
-        Firebase.setAndroidContext(this);
         firebase = FirebaseClient.getCatalogies();
-
         popularView();
         onClickSellFAB();
     }
@@ -169,8 +176,15 @@ public class CatalogiesActivity extends AppCompatActivity {
         fabSell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CatalogiesActivity.this, SellActivity.class);
-                startActivity(intent);
+                if (mUser!=null){
+                    Intent intent = new Intent(CatalogiesActivity.this, SellActivity.class);
+                    intent.putExtra("user", Parcels.wrap(mUser));
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(CatalogiesActivity.this, UserRegistryActivity.class);
+                    startActivityForResult(intent, getResources().getInteger(R.integer.LOGIN_SUCCESS_CODE));
+                }
+
             }
         });
     }
@@ -190,6 +204,4 @@ public class CatalogiesActivity extends AppCompatActivity {
             startActivityForResult(intent, R.integer.PICK_PHOTO_CODE);
         }
     }
-
-
 }

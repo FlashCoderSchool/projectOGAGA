@@ -34,7 +34,6 @@
                 android:layout_column="1" />
             <EditText
                 android:width="200px"
-                android:inputType="phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etProductname"
@@ -77,7 +76,7 @@
                 android:width="200px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spProductQuanlity"
+                android:id="@+id/spProductUnit"
                 android:layout_column="2" />
         </TableRow>
         <TableRow>
@@ -94,7 +93,8 @@
                 />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:id="@+id/trDateStart">
             <TextView
                 android:text="@string/product_startat"
                 android:layout_width="wrap_content"
@@ -108,7 +108,8 @@
                 android:id="@+id/etDateStart"
                 />
         </TableRow>
-        <TableRow>
+        <TableRow
+            android:id="@+id/trDateFinished">
             <TextView
                 android:text="@string/product_finished_date"
                 android:layout_width="wrap_content"
@@ -131,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Submit"
-                android:id="@+id/btnRegistry"
+                android:id="@+id/btnSubmit"
                 android:layout_column="2"/>
         </TableRow>
     </TableLayout>
