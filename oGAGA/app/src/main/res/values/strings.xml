@@ -32,6 +32,10 @@
     <string name="product_finished_date">Ngày kết thúc</string>
     <string name="product_type">Loại sản phẩm</string>
     <string name="product_description">Đăng nhập thành công</string>
+    <string name="item_product_name">Product name</string>
+    <string name="item_producer">Producer Name</string>
+    <string name="item_product_origin">Product origin</string>
+    <string name="item_product_price">Product price</string>
     <string-array name="product_type">
         <item>Cá</item>
         <item>Trái cây</item>
