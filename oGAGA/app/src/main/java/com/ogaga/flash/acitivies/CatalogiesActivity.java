@@ -174,6 +174,10 @@ public class CatalogiesActivity extends AppCompatActivity {
         });
     }
 
+    public void onClickCategoryItem(){
+
+    }
+
     public void onPickPhoto(View view) {
         // Create intent for picking a photo from the gallery
         Intent intent = new Intent(Intent.ACTION_PICK,
