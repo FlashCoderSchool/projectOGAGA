@@ -2,6 +2,8 @@ package com.ogaga.flash.models;
 
 import org.parceler.Parcel;
 
+import java.util.List;
+
 /**
  * Created by Kanet on 4/13/2016.
  */
@@ -18,14 +20,23 @@ public class Product {
     private long id_shipping;
     private long id_unit;
     private long id_productType;
-    private long id_user;
+    private User user;
+    private List<Order> orders;
 
-    public long getId_user() {
-        return id_user;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setId_user(long id_user) {
-        this.id_user = id_user;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public long getId() {
@@ -119,7 +130,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(long id, String name, String url, long prices, long id_productStatus, long create_at, long start_date, long finished_date, long id_shipping, int id_unit, long id_productType,long id_user) {
+    public Product(long id, String name, String url, long prices, long id_productStatus, long create_at, long start_date, long finished_date, long id_shipping, long id_unit, long id_productType, User user, List<Order> orders) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -131,6 +142,7 @@ public class Product {
         this.id_shipping = id_shipping;
         this.id_unit = id_unit;
         this.id_productType = id_productType;
-        this.id_user=id_user;
+        this.user = user;
+        this.orders = orders;
     }
 }

@@ -2,10 +2,12 @@ package com.ogaga.flash.models;
 
 import android.graphics.Bitmap;
 
+import org.parceler.Parcel;
+
 /**
  * Created by Kanet on 4/13/2016.
  */
-
+@Parcel
 public class Catalogies {
 
     private long id;

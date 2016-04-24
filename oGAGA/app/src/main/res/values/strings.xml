@@ -57,4 +57,7 @@
         <item>Kg</item>
         <item>Lít</item>
     </string-array>
+    <!-- TODO: Order label -->
+    <string name="order_product">Đặt hàng</string>
+    <string name="order_totals">Thành tiền</string>
 </resources>

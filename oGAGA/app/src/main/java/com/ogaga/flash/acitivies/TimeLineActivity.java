@@ -14,8 +14,11 @@ import com.firebase.client.Firebase;
 import com.ogaga.flash.R;
 import com.ogaga.flash.adapters.ProductRecyclerViewAdapter;
 import com.ogaga.flash.clients.FirebaseClient;
+import com.ogaga.flash.models.Catalogies;
 import com.ogaga.flash.models.User;
 import com.ogaga.flash.utils.RecyclerItemClickListener;
+
+import org.parceler.Parcels;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,7 +31,7 @@ public class TimeLineActivity extends AppCompatActivity {
     RecyclerView rvProductList;
     @Bind(R.id.fab)
     FloatingActionButton fab;
-
+    Catalogies mCatalogies;
     private ProductRecyclerViewAdapter mProductRecyclerViewAdapter;
     private User mUser;
 
@@ -38,7 +41,8 @@ public class TimeLineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_time_line);
 
         ButterKnife.bind(this);
-
+        mCatalogies= Parcels.unwrap(getIntent().getParcelableExtra("catalogies"));
+        mUser= Parcels.unwrap(getIntent().getParcelableExtra("user"));
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -48,7 +52,7 @@ public class TimeLineActivity extends AppCompatActivity {
         populateProductListView();
         onClickSellFAB();
 
-        rvProductList.addOnItemTouchListener(new RecyclerItemClickListener(this, rvProductList, new RecyclerItemClickListener.OnItemClickListener() {
+ /*       rvProductList.addOnItemTouchListener(new RecyclerItemClickListener(this, rvProductList, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(TimeLineActivity.this, "Normal tap", Toast.LENGTH_SHORT).show();
@@ -63,11 +67,11 @@ public class TimeLineActivity extends AppCompatActivity {
 //                intent.putExtra(PHOTO_TRANSFER, flickrRecyclerViewAdapter.getPhoto(position));
 //                startActivity(intent);
             }
-        }));
+        }));*/
     }
 
     public void populateProductListView() {
-        mProductRecyclerViewAdapter = new ProductRecyclerViewAdapter(fbProduct, this);
+        mProductRecyclerViewAdapter = new ProductRecyclerViewAdapter(fbProduct, this,mUser);
         rvProductList.setHasFixedSize(true);
         rvProductList.setLayoutManager(new LinearLayoutManager(this));
         rvProductList.setAdapter(mProductRecyclerViewAdapter);

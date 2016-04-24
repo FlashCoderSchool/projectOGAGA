@@ -117,6 +117,23 @@ public class CatalogiesActivity extends AppCompatActivity {
         setupViewNavigation();
         setupNaivgion();
         popularView();
+  /*      rvCate.addOnItemTouchListener(new RecyclerItemClickListener(this, rvCate, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(CatalogiesActivity.this, "Normal tap", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CatalogiesActivity.this, TimeLineActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+                Toast.makeText(CatalogiesActivity.this, "Long tap", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(MainActivity.this, ViewPhotoDetailActivity.class);
+//                intent.putExtra(PHOTO_TRANSFER, flickrRecyclerViewAdapter.getPhoto(position));
+//                startActivity(intent);
+            }
+        }));*/
+
         onClickSellFAB();
     }
 
@@ -126,7 +143,7 @@ public class CatalogiesActivity extends AppCompatActivity {
         ivNavAvatar=(CircleImageView)headerLayout.findViewById(R.id.ivNavAvatar);
         tvNavFullname=(TextView)headerLayout.findViewById(R.id.tvNavFullName);
 
-        mnSignout=(MenuItem)nvDrawer.getMenu().findItem(R.id.navSignOut);
+        mnSignout= nvDrawer.getMenu().findItem(R.id.navSignOut);
     }
 
     private void setupNaivgion() {
@@ -196,7 +213,7 @@ public class CatalogiesActivity extends AppCompatActivity {
 
 
     public void popularView() {
-        cateAdapter = new CategoryAdapter(firebase, this);
+        cateAdapter = new CategoryAdapter(firebase, this,mUser);
         rvCate.setHasFixedSize(true);
         rvCate.setLayoutManager(new LinearLayoutManager(this));
         rvCate.setAdapter(cateAdapter);

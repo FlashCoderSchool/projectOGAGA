@@ -33,6 +33,8 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Product,ProductAdapt
         //holder.ivImage.setImageResource(cate.getLocalImage());
         Picasso.with(context).load(product.getUrl()).placeholder(R.drawable.im_placeholder).into(viewHolder.ivProductImage);
     }
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.ivProductImage)ImageView ivProductImage;
         @Bind(R.id.tvProductName) TextView tvProductName;
