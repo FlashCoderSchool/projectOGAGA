@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
@@ -17,7 +16,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
@@ -25,15 +23,12 @@ import com.ogaga.flash.R;
 import com.ogaga.flash.adapters.CategoryAdapter;
 import com.ogaga.flash.clients.FirebaseClient;
 import com.ogaga.flash.clients.ImgurClient;
-import com.ogaga.flash.extra.Constant;
-import com.ogaga.flash.helpers.AuthorHelper;
 import com.ogaga.flash.helpers.DocumentHelper;
 import com.ogaga.flash.imgurmodel.ImageResponse;
 import com.ogaga.flash.imgurmodel.Upload;
 import com.ogaga.flash.models.Catalogies;
 import com.ogaga.flash.models.UiCallback;
 import com.ogaga.flash.models.User;
-import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
@@ -42,7 +37,6 @@ import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CatalogiesActivity extends AppCompatActivity {
 
@@ -60,12 +54,7 @@ public class CatalogiesActivity extends AppCompatActivity {
     NavigationView nvDrawer;
     @Bind(R.id.fabSell)
     FloatingActionButton fabSell;
-    /////////////////
-    TextView tvNavPhonenumber;
-    CircleImageView ivNavAvatar;
-    TextView tvNavFullname;
-    MenuItem mnSignout;
-    /////////////////
+
     private CategoryAdapter cateAdapter;
     private ActionBarDrawerToggle drawerToggle;
     private User mUser;
@@ -93,55 +82,18 @@ public class CatalogiesActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 break;
                             case R.id.navUserProfile:
-                                if(mUser!=null){
-                                    Intent intentUserProfile = new Intent(CatalogiesActivity.this, UserProfileActivity.class);
-                                    intentUserProfile.putExtra("user",Parcels.wrap(mUser));
-                                    startActivity(intentUserProfile);
-                                }else{
-                                    Intent intentLogin = new Intent(CatalogiesActivity.this, LoginActivity.class);
-                                    startActivityForResult(intentLogin, Constant.LOGIN_SUCCESS_CODE);
-                                }
+                                Intent intentUserProfile = new Intent(CatalogiesActivity.this, UserProfileActivity.class);
+                                intentUserProfile.putExtra("user",Parcels.wrap(mUser));
+                                startActivity(intentUserProfile);
                                 break;
-                            case R.id.navSignOut:{
-                                AuthorHelper.clearUser(getApplicationContext());
-                                mUser=null;
-                                setupNaivgion();
-                                break;
-                            }
                         }
                         return true;
                     }
                 });
         firebase = FirebaseClient.getCatalogies();
-        setupViewNavigation();
-        setupNaivgion();
         popularView();
         onClickSellFAB();
     }
-
-    private void setupViewNavigation() {
-        View headerLayout = nvDrawer.inflateHeaderView(R.layout.nav_header);
-        tvNavPhonenumber=(TextView)headerLayout.findViewById(R.id.tvNavPhonenumber);
-        ivNavAvatar=(CircleImageView)headerLayout.findViewById(R.id.ivNavAvatar);
-        tvNavFullname=(TextView)headerLayout.findViewById(R.id.tvNavFullName);
-
-        mnSignout=(MenuItem)nvDrawer.getMenu().findItem(R.id.navSignOut);
-    }
-
-    private void setupNaivgion() {
-        if(mUser==null){
-            tvNavFullname.setText("Ogaga Founder");
-            tvNavPhonenumber.setText("0988663129");
-            Picasso.with(getApplicationContext()).load(R.drawable.vegetable).into(ivNavAvatar);
-            mnSignout.setVisible(false);
-        }else{
-            tvNavFullname.setText(mUser.getFullname());
-            tvNavPhonenumber.setText(mUser.getPhonenumber());
-            Picasso.with(getApplicationContext()).load(mUser.getProfile_image()).placeholder(R.drawable.im_placeholder).into(ivNavAvatar);
-            mnSignout.setVisible(true);
-        }
-    }
-
 
     @Override
     protected void onDestroy() {
@@ -178,14 +130,34 @@ public class CatalogiesActivity extends AppCompatActivity {
     // on Product post result
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constant.LOGIN_SUCCESS_CODE) {
-            if (data != null) {
-                    mUser=Parcels.unwrap(data.getParcelableExtra("user"));
-                    setupNaivgion();
+        if (requestCode == R.integer.PICK_PHOTO_CODE) {
+            if (resultCode == RESULT_OK) {
+                if (data != null) {
+                    try {
+                        Uri photoUri = data.getData();
+                        // Do something with the photo based on Uri
+                        Bitmap selectedImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
+                        Upload upload = new Upload();
+
+                        upload.image = new File(DocumentHelper.getPath(this, photoUri));
+                        upload.title = "abc";
+                        upload.description = "abc";
+                        new ImgurClient(this, new ImgurClient.ImgurClientListener() {
+                            @Override
+                            public void postUploadImage(ImageResponse imageResponse) {
+                                Catalogies catalogies = new Catalogies(1, "food", System.currentTimeMillis(), "null", imageResponse.data.link);
+                                firebase.push().setValue(catalogies);
+                            }
+                        }).Execute(upload, new UiCallback());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+            }
         }
+
     }
 
     /*Functions*/
@@ -210,14 +182,27 @@ public class CatalogiesActivity extends AppCompatActivity {
                     intent.putExtra("user", Parcels.wrap(mUser));
                     startActivity(intent);
                 }else{
-                    Intent intent = new Intent(CatalogiesActivity.this, LoginActivity.class);
-                    startActivityForResult(intent, Constant.LOGIN_SUCCESS_CODE);
+                    Intent intent = new Intent(CatalogiesActivity.this, UserRegistryActivity.class);
+                    startActivityForResult(intent, getResources().getInteger(R.integer.LOGIN_SUCCESS_CODE));
                 }
+
             }
         });
     }
 
     public void onClickCategoryItem(){
 
+    }
+
+    public void onPickPhoto(View view) {
+        // Create intent for picking a photo from the gallery
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+        // So as long as the result is not null, it's safe to use the intent.
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            // Bring up gallery to select a photo
+            startActivityForResult(intent, R.integer.PICK_PHOTO_CODE);
+        }
     }
 }
