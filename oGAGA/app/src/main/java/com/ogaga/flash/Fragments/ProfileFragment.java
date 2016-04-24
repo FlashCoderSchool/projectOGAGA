@@ -8,9 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.client.Firebase;
+import com.firebase.client.Query;
 import com.firebase.client.annotations.Nullable;
 import com.ogaga.flash.R;
 import com.ogaga.flash.adapters.ProductAdapter;
+import com.ogaga.flash.clients.FirebaseClient;
 import com.ogaga.flash.models.Product;
 import com.ogaga.flash.utils.EndlessRecyclerViewScrollListener;
 
@@ -29,7 +32,6 @@ public class ProfileFragment extends Fragment {
     RecyclerView rvProduct;
     private ArrayList<Product> products;
     private ProductAdapter pAdapter;
-
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup parent, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_product_list, parent, false);
@@ -37,7 +39,6 @@ public class ProfileFragment extends Fragment {
 
         rvProduct.setAdapter(pAdapter);
         //rvTweets.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         StaggeredGridLayoutManager gridLayoutManager =
                 new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         //enable optimizations if all item views are of the same height and width for significantly smoother scrolling
@@ -68,12 +69,14 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         products = new ArrayList<>();
-        // aTweets = new TweetsArrayAdapter(tweets);
+        //mFirebase= FirebaseClient.getProduct();
+
     }
 
-    public void addAll(List<Product> p) {
-        products.addAll(p);
-        int curSize = p.size();
-        pAdapter.notifyItemRangeInserted(curSize, p.size());
+    public void addAll(Query query) {
+        pAdapter= new ProductAdapter(query,getContext());
+      /*  products.addAll(p);
+        int curSize = p.size();*/
+        //pAdapter.notifyItemRangeInserted(curSize, p.size());
     }
 }
