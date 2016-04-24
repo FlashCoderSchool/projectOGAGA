@@ -84,8 +84,9 @@ public class CatalogiesActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 break;
                             case R.id.navUserProfile:
-                                Intent intentSetting = new Intent(CatalogiesActivity.this, UserProfileActivity.class);
-                                startActivity(intentSetting);
+                                Intent intentUserProfile = new Intent(CatalogiesActivity.this, UserProfileActivity.class);
+                                intentUserProfile.putExtra("user",Parcels.wrap(mUser));
+                                startActivity(intentUserProfile);
                                 break;
                         }
                         return true;
