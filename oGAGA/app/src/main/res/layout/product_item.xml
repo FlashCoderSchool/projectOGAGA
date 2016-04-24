@@ -11,8 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/im_placeholder"/>
+        android:layout_alignParentTop="true"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

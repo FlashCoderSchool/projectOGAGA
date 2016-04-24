@@ -29,6 +29,7 @@ import com.ogaga.flash.imgurmodel.Upload;
 import com.ogaga.flash.models.Catalogies;
 import com.ogaga.flash.models.UiCallback;
 import com.ogaga.flash.models.User;
+import com.ogaga.flash.utils.RecyclerItemClickListener;
 
 import org.parceler.Parcels;
 
@@ -46,6 +47,7 @@ public class CatalogiesActivity extends AppCompatActivity {
     Firebase firebase;
     @Bind(R.id.rvCate)
     RecyclerView rvCate;
+
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.drawer_layout)
@@ -65,7 +67,7 @@ public class CatalogiesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_catalogies);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        mUser=Parcels.unwrap(getIntent().getParcelableExtra("user"));
+        mUser = Parcels.unwrap(getIntent().getParcelableExtra("user"));
         Firebase.setAndroidContext(this);
         drawerToggle = setupDrawerToggle();
         firebase = FirebaseClient.getCatalogies();
@@ -89,9 +91,28 @@ public class CatalogiesActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+
         firebase = FirebaseClient.getCatalogies();
         popularView();
+        rvCate.addOnItemTouchListener(new RecyclerItemClickListener(this, rvCate, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(CatalogiesActivity.this, "Normal tap", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CatalogiesActivity.this, TimeLineActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+                Toast.makeText(CatalogiesActivity.this, "Long tap", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(MainActivity.this, ViewPhotoDetailActivity.class);
+//                intent.putExtra(PHOTO_TRANSFER, flickrRecyclerViewAdapter.getPhoto(position));
+//                startActivity(intent);
+            }
+        }));
+
         onClickSellFAB();
+
     }
 
     @Override
@@ -176,11 +197,11 @@ public class CatalogiesActivity extends AppCompatActivity {
         fabSell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mUser!=null){
+                if (mUser != null) {
                     Intent intent = new Intent(CatalogiesActivity.this, SellActivity.class);
                     intent.putExtra("user", Parcels.wrap(mUser));
                     startActivity(intent);
-                }else{
+                } else {
                     Intent intent = new Intent(CatalogiesActivity.this, UserRegistryActivity.class);
                     startActivityForResult(intent, getResources().getInteger(R.integer.LOGIN_SUCCESS_CODE));
                 }
@@ -189,7 +210,7 @@ public class CatalogiesActivity extends AppCompatActivity {
         });
     }
 
-    public void onClickCategoryItem(){
+    public void onClickCategoryItem() {
 
     }
 

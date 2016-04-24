@@ -12,15 +12,16 @@ import com.squareup.picasso.Picasso;
  * Created by IceStone on 4/24/2016.
  */
 public class ProductRecyclerViewAdapter extends FirebaseRecyclerAdapter<Product, ProductItemViewHolder> {
+
     private Context context;
 
     public ProductRecyclerViewAdapter(Firebase ref, Context parentContext) {
-        super(Product.class, R.layout.item_product, ProductItemViewHolder.class, ref);
+        super(Product.class, R.layout.product_item, ProductItemViewHolder.class, ref);
         context = parentContext;
     }
 
     @Override
-    protected void populateViewHolder(ProductItemViewHolder viewHolder, Product product, int i) {
+    public void populateViewHolder(ProductItemViewHolder viewHolder, Product product, int i) {
         Picasso.with(context).load(product.getUrl()).into(viewHolder.productImage);
         viewHolder.productName.setText(product.getName());
 //        viewHolder.producer.setText(product.getProducer());

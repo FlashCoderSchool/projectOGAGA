@@ -27,10 +27,7 @@ public class ProductItemViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
-
-
-
-    //    /*-- Without Butterkife --*/
+//    /*-- Without Butterkife --*/
 //    public ImageView productImage;
 //    public TextView productName;
 //    public TextView productProducer;
