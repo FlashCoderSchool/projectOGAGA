@@ -24,6 +24,7 @@ import java.util.List;
 /**
  * Created by carot on 4/21/2016.
  */
+<<<<<<< HEAD:oGAGA/app/src/main/java/com/ogaga/flash/Fragments/ProfileSallerFragment.java
 public class ProfileSallerFragment extends ProfileFragment {
 
     public static ProfileSallerFragment newInstance(User user) {
@@ -55,4 +56,7 @@ public class ProfileSallerFragment extends ProfileFragment {
         addAll(query);
     }
 
+=======
+public class ProfileSellerFragment extends ProfileFragment {
+>>>>>>> c16587116220b75410ffd0fe567d170358816281:oGAGA/app/src/main/java/com/ogaga/flash/Fragments/ProfileSellerFragment.java
 }

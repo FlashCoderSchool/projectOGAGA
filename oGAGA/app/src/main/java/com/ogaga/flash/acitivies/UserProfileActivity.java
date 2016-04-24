@@ -1,19 +1,17 @@
 package com.ogaga.flash.acitivies;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.ogaga.flash.Fragments.ProfileBuyerFragment;
-import com.ogaga.flash.Fragments.ProfileSallerFragment;
+import com.ogaga.flash.Fragments.ProfileSellerFragment;
 import com.ogaga.flash.R;
 import com.ogaga.flash.models.User;
 import com.squareup.picasso.Picasso;
@@ -22,6 +20,8 @@ import org.parceler.Parcels;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+//import com.astuetz.PagerSlidingTabStrip;
 
 public class UserProfileActivity extends AppCompatActivity {
 
@@ -46,11 +46,11 @@ public class UserProfileActivity extends AppCompatActivity {
         mUser= Parcels.unwrap(getIntent().getParcelableExtra("user"));
         setupInfoUser();
         //Get the viewpager
-        ViewPager vPager = (ViewPager) findViewById(R.id.viewpager);
-        vPager.setAdapter(new ProfilePagerAdapter(getSupportFragmentManager()));
+//        ViewPager vPager = (ViewPager) findViewById(R.id.viewpager);
+//        vPager.setAdapter(new ProfilePagerAdapter(getSupportFragmentManager()));
 
-        PagerSlidingTabStrip pSliding = (PagerSlidingTabStrip) findViewById(R.id.tabs);
-        pSliding.setViewPager(vPager);
+//        PagerSlidingTabStrip pSliding = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+//        pSliding.setViewPager(vPager);
     }
 
     private void setupInfoUser() {
@@ -81,6 +81,7 @@ public class UserProfileActivity extends AppCompatActivity {
         }
         @Override
         public Fragment getItem(int position) {
+<<<<<<< HEAD
             switch (position){
                 case 0:{
                     return ProfileSallerFragment.newInstance(mUser);
@@ -88,6 +89,14 @@ public class UserProfileActivity extends AppCompatActivity {
                 case 1:{
                     return ProfileBuyerFragment.newInstance(mUser);
                 }
+=======
+            if(position == 0){
+                return new ProfileBuyerFragment();
+            }else if (position == 1){
+                return new ProfileSellerFragment();
+            }else{
+                return null;
+>>>>>>> c16587116220b75410ffd0fe567d170358816281
             }
             return null;
         }

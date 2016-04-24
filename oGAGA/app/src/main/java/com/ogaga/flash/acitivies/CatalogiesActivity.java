@@ -127,6 +127,7 @@ public class CatalogiesActivity extends AppCompatActivity {
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
+    // on Product post result
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == R.integer.PICK_PHOTO_CODE) {
@@ -187,6 +188,10 @@ public class CatalogiesActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void onClickCategoryItem(){
+
     }
 
     public void onPickPhoto(View view) {
