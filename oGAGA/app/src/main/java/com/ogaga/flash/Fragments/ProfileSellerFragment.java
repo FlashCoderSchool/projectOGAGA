@@ -24,11 +24,10 @@ import java.util.List;
 /**
  * Created by carot on 4/21/2016.
  */
-<<<<<<< HEAD:oGAGA/app/src/main/java/com/ogaga/flash/Fragments/ProfileSallerFragment.java
-public class ProfileSallerFragment extends ProfileFragment {
+public class ProfileSellerFragment extends ProfileFragment {
 
-    public static ProfileSallerFragment newInstance(User user) {
-        ProfileSallerFragment fragment = new ProfileSallerFragment();
+    public static ProfileSellerFragment newInstance(User user) {
+        ProfileSellerFragment fragment = new ProfileSellerFragment();
         Bundle bundle=new Bundle();
         bundle.putParcelable("user", Parcels.wrap(user));
         fragment.setArguments(bundle);
@@ -56,7 +55,4 @@ public class ProfileSallerFragment extends ProfileFragment {
         addAll(query);
     }
 
-=======
-public class ProfileSellerFragment extends ProfileFragment {
->>>>>>> c16587116220b75410ffd0fe567d170358816281:oGAGA/app/src/main/java/com/ogaga/flash/Fragments/ProfileSellerFragment.java
 }

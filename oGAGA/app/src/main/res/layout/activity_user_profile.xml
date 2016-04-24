@@ -28,11 +28,7 @@
             android:text="@string/full_name" />
 
         <TextView
-<<<<<<< HEAD
             android:id="@+id/tvPhonenumber"
-=======
-            android:id="@+id/tvProductName"
->>>>>>> c16587116220b75410ffd0fe567d170358816281
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvFullName"
@@ -43,30 +39,25 @@
             android:id="@+id/tvCountTrans"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
             android:layout_below="@+id/tvPhonenumber"
             android:layout_toRightOf="@+id/ivUser"
-=======
-            android:layout_below="@+id/tvProductName"
-            android:layout_toRightOf="@+id/imUser"
->>>>>>> c16587116220b75410ffd0fe567d170358816281
             android:text="@string/count_success_transaction" />
 
     </RelativeLayout>
 
-    <!--<com.astuetz.PagerSlidingTabStrip-->
-        <!--android:id="@+id/tabs"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="48dp"-->
-        <!--android:layout_below="@+id/LProfile"-->
-        <!--app:pstsShouldExpand="true"-->
-        <!--app:pstsTextAllCaps="true" />-->
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/LProfile"
+        app:pstsShouldExpand="true"
+        app:pstsTextAllCaps="true" />
 
-    <!--<android.support.v4.view.ViewPager-->
-        <!--android:id="@+id/viewpager"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/tabs"-->
-        <!--android:background="@android:color/white" />-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tabs"
+        android:background="@android:color/white" />
 
 </RelativeLayout>

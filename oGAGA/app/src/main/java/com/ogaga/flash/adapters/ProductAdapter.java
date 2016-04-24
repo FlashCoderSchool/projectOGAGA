@@ -31,16 +31,16 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Product,ProductAdapt
     protected void populateViewHolder(ProductAdapter.ViewHolder viewHolder, Product product, int i) {
         viewHolder.tvProductName.setText(product.getName());
         //holder.ivImage.setImageResource(cate.getLocalImage());
-        Picasso.with(context).load(product.getUrl()).into(viewHolder.ivPicture);
+        Picasso.with(context).load(product.getUrl()).placeholder(R.drawable.im_placeholder).into(viewHolder.ivProductImage);
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.ivPicture)ImageView ivPicture;
-        @Bind(R.id.ivStatus)ImageView ivStatus;
-        @Bind(R.id.tvProductName)TextView tvProductName;
-        @Bind(R.id.tvAdressUser)TextView tvAdressUser;
-        @Bind(R.id.tvOrderCount)TextView tvOrderCount;
-        @Bind(R.id.tvPriceByUnit)TextView tvPriceByUnit;
-        @Bind(R.id.tvStatusName)TextView tvStatusName;
+        @Bind(R.id.ivProductImage)ImageView ivProductImage;
+        @Bind(R.id.tvProductName) TextView tvProductName;
+        @Bind(R.id.tvProducer) TextView tvProducer;
+        @Bind(R.id.tvProductOrigin) TextView tvProductOrigin;
+        @Bind(R.id.tvProductPrice) TextView tvProductPrice;
+        @Bind(R.id.ivProductStatus) ImageView ivProductStatusImage;
+        @Bind(R.id.tvProductStatus) TextView tvProductStatus;
         public ViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, v);
