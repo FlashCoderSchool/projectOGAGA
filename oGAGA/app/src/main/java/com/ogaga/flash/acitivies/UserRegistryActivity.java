@@ -9,12 +9,10 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,15 +25,9 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.MutableData;
 import com.firebase.client.Transaction;
-import com.firebase.client.ValueEventListener;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.places.PlaceLikelihood;
-import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
-import com.google.android.gms.location.places.Places;
 import com.ogaga.flash.R;
 import com.ogaga.flash.clients.FirebaseClient;
 import com.ogaga.flash.clients.ImgurClient;
@@ -44,7 +36,6 @@ import com.ogaga.flash.helpers.AuthorHelper;
 import com.ogaga.flash.helpers.DocumentHelper;
 import com.ogaga.flash.imgurmodel.ImageResponse;
 import com.ogaga.flash.imgurmodel.Upload;
-import com.ogaga.flash.models.Catalogies;
 import com.ogaga.flash.models.UiCallback;
 import com.ogaga.flash.models.User;
 
@@ -84,6 +75,7 @@ public class UserRegistryActivity extends AppCompatActivity implements
     private Location currentLocation;
     private Firebase mFirebaseClient;
     private Uri mPhotoUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,8 +83,8 @@ public class UserRegistryActivity extends AppCompatActivity implements
         ButterKnife.bind(this);
         getMyLocation();
         Firebase.setAndroidContext(this);
-        mFirebaseClient=FirebaseClient.getUsers();
-        locationListenerGPS =new LocationListener() {
+        mFirebaseClient = FirebaseClient.getUsers();
+        locationListenerGPS = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 updateLocation(location);
@@ -169,19 +161,19 @@ public class UserRegistryActivity extends AppCompatActivity implements
     public void registryUser() {
         btnRegistry.setVisibility(View.INVISIBLE);
         final User user = new User();
-        if (etFullname.getText()==null){
+        if (etFullname.getText() == null) {
             btnRegistry.setVisibility(View.VISIBLE);
             return;
         }
-        if (etAddressuser.getText()==null){
+        if (etAddressuser.getText() == null) {
             btnRegistry.setVisibility(View.VISIBLE);
             return;
         }
-        if (etPhonenumber.getText()==null){
+        if (etPhonenumber.getText() == null) {
             btnRegistry.setVisibility(View.VISIBLE);
             return;
         }
-        if (mPhotoUri==null){
+        if (mPhotoUri == null) {
             btnRegistry.setVisibility(View.VISIBLE);
             return;
         }
@@ -225,9 +217,9 @@ public class UserRegistryActivity extends AppCompatActivity implements
                                     user.setLocation(location);
                                     user.setPhonenumber(etPhonenumber.getText().toString());
                                     user.setProfile_image(imageResponse.data.link);
-                                    Firebase mUserFirebase=mFirebaseClient.child(stringObjectMap.get("uid").toString());
+                                    Firebase mUserFirebase = mFirebaseClient.child(stringObjectMap.get("uid").toString());
                                     mUserFirebase.setValue(user);
-                                    AuthorHelper.writeString(getApplicationContext(), "uid",stringObjectMap.get("uid").toString());
+                                    AuthorHelper.writeString(getApplicationContext(), "uid", stringObjectMap.get("uid").toString());
                                     Toast.makeText(getApplicationContext(), getResources().getText(R.string.registry_success), Toast.LENGTH_LONG).show();
                                     //
                                     Intent intent = new Intent();
@@ -250,7 +242,7 @@ public class UserRegistryActivity extends AppCompatActivity implements
         }).Execute(upload, new UiCallback());
     }
 
-    void getCurrentLocation(){
+    void getCurrentLocation() {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -289,8 +281,9 @@ public class UserRegistryActivity extends AppCompatActivity implements
 
 
     }
+
     void updateLocation(Location location) {
-        currentLocation=location;
+        currentLocation = location;
        /* Toast.makeText(
                 UserRegistryActivity.this,
                 "GPS Location \n" + String.valueOf(currentLocation.getLongitude()) + "\n"
@@ -298,14 +291,14 @@ public class UserRegistryActivity extends AppCompatActivity implements
     }
 
     protected void onStart() {
-        if(mGoogleApiClient!=null){
+        if (mGoogleApiClient != null) {
             mGoogleApiClient.connect();
         }
         super.onStart();
     }
 
     protected void onStop() {
-        if (mGoogleApiClient!=null)
+        if (mGoogleApiClient != null)
             mGoogleApiClient.disconnect();
         super.onStop();
     }
@@ -315,14 +308,14 @@ public class UserRegistryActivity extends AppCompatActivity implements
         if (requestCode == getResources().getInteger(R.integer.PICK_PHOTO_CODE)) {
             if (resultCode == RESULT_OK) {
                 if (data != null) {
-                    try{
+                    try {
                         mPhotoUri = data.getData();
                         // Do something with the photo based on Uri
                         Bitmap selectedImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), mPhotoUri);
 
                         ivAvatar.setImageBitmap(selectedImage);
 
-                    }catch (IOException e){
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
