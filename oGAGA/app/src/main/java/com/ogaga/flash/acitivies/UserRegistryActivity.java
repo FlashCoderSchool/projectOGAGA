@@ -39,6 +39,7 @@ import com.google.android.gms.location.places.Places;
 import com.ogaga.flash.R;
 import com.ogaga.flash.clients.FirebaseClient;
 import com.ogaga.flash.clients.ImgurClient;
+import com.ogaga.flash.extra.Constant;
 import com.ogaga.flash.helpers.AuthorHelper;
 import com.ogaga.flash.helpers.DocumentHelper;
 import com.ogaga.flash.imgurmodel.ImageResponse;
@@ -231,7 +232,7 @@ public class UserRegistryActivity extends AppCompatActivity implements
                                     //
                                     Intent intent = new Intent();
                                     intent.putExtra("user", Parcels.wrap(user));
-                                    setResult(getResources().getInteger(R.integer.REGISTRY_SUCCESS_CODE), intent);
+                                    setResult(Constant.REGISTRY_SUCCESS_CODE, intent);
                                     finish();//finishing activity
                                 }
                             }

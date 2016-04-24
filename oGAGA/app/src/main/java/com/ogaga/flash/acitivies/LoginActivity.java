@@ -17,6 +17,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.ogaga.flash.R;
 import com.ogaga.flash.clients.FirebaseClient;
+import com.ogaga.flash.extra.Constant;
 import com.ogaga.flash.helpers.AuthorHelper;
 import com.ogaga.flash.models.User;
 
@@ -54,12 +55,13 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onAuthenticated(AuthData authData) {
                         // Authentication just completed successfully :)
+                        AuthorHelper.writeString(getApplicationContext(), "uid",authData.getUid().toString());
                         FirebaseClient.getUserLogin(getApplicationContext(), new FirebaseClient.LoginUser() {
                             @Override
                             public void onLoginSuccess(User user) {
                                 Intent intent = new Intent();
                                 intent.putExtra("user", Parcels.wrap(user));
-                                setResult(getResources().getInteger(R.integer.LOGIN_SUCCESS_CODE), intent);
+                                setResult(Constant.LOGIN_SUCCESS_CODE, intent);
                                 Toast.makeText(getApplicationContext(), getResources().getText(R.string.login_success), Toast.LENGTH_LONG);
                                 finish();//finishing activity
                             }
@@ -76,20 +78,18 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.tvRegistry)
     public void onRegistry(){
         Intent intent=new Intent(this,UserRegistryActivity.class);
-        startActivityForResult(intent, getResources().getInteger(R.integer.REGISTRY_SUCCESS_CODE));
+        startActivityForResult(intent, Constant.REGISTRY_SUCCESS_CODE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == getResources().getInteger(R.integer.REGISTRY_SUCCESS_CODE)) {
-            if (resultCode == RESULT_OK) {
+        if (requestCode == Constant.REGISTRY_SUCCESS_CODE) {
                 if (data != null) {
-                    mUser=data.getParcelableExtra("user");
+                    mUser=Parcels.unwrap(data.getParcelableExtra("user"));
                     Intent intent=new Intent();
                     intent.putExtra("user", Parcels.wrap(mUser));
-                    setResult(getResources().getInteger(R.integer.LOGIN_SUCCESS_CODE), intent);
+                    setResult(Constant.LOGIN_SUCCESS_CODE, intent);
                     finish();//finishing activity
-                }
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }

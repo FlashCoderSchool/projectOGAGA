@@ -1,45 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
 
     <ImageView
+        android:id="@+id/ivProductImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ivPicture"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+         />
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/product_name"
-        android:id="@+id/tvProductName" />
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/address_user"
-        android:id="@+id/tvAdressUser" />
+        <TextView
+            android:id="@+id/tvProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_name"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Large Text"
-        android:id="@+id/tvOrderCount" />
+        <TextView
+            android:id="@+id/tvProducer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/full_name"
+            android:textAppearance="?android:textAppearanceMedium"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medium Text"
-        android:id="@+id/tvPriceByUnit" />
+        <TextView
+            android:id="@+id/tvProductOrigin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/address_user"
+            android:textAppearance="?android:textAppearanceMedium"/>
 
-    <ImageView
+        <TextView
+            android:id="@+id/tvProductPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_product_price"
+            android:textAppearance="?android:textAppearanceMedium"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ivStatus" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medium Text"
-        android:id="@+id/tvStatusName" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
+
+        <ImageView
+            android:id="@+id/ivProductStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/im_loading_64"/>
+
+        <TextView
+            android:id="@+id/tvProductStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_product_price"/>
+    </LinearLayout>
+
 </LinearLayout>
