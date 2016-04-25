@@ -1,11 +1,13 @@
 package com.ogaga.flash.acitivies;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -22,6 +24,7 @@ import org.parceler.Parcels;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 //import com.astuetz.PagerSlidingTabStrip;
 
@@ -31,18 +34,31 @@ public class UserProfileActivity extends AppCompatActivity {
     @Bind(R.id.tvFullName)TextView tvFullName;
     @Bind(R.id.tvPhonenumber)TextView tvPhonenumber;
     @Bind(R.id.tvCountTrans)TextView tvCountTrans;
+    @Bind(R.id.toolbarHeader)
+    Toolbar toolbar;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            // This is the up button
+            case android.R.id.home:
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("User Profile");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mUser= Parcels.unwrap(getIntent().getParcelableExtra("user"));
         setupInfoUser();
         //Get the viewpager

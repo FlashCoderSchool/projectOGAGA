@@ -8,4 +8,6 @@
     <dimen name="font_size_large">20sp</dimen>
     <dimen name="submit_width">150dp</dimen>
     <dimen name="submit_height">30dp</dimen>
+    <dimen name="margin_header">60dp</dimen>
+    <dimen name="margin_image">40dp</dimen>
 </resources>
