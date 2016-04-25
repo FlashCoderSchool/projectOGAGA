@@ -1,5 +1,6 @@
 package com.ogaga.flash.acitivies;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -14,12 +15,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.ogaga.flash.utils.DividerItemDecoration;
+import com.ogaga.flash.utils.SpacesItemDecoration;
 import com.firebase.client.Firebase;
 import com.ogaga.flash.R;
 import com.ogaga.flash.adapters.CategoryAdapter;
@@ -44,6 +47,8 @@ import java.io.IOException;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CatalogiesActivity extends AppCompatActivity {
 
@@ -53,7 +58,7 @@ public class CatalogiesActivity extends AppCompatActivity {
     Firebase firebase;
     @Bind(R.id.rvCate)
     RecyclerView rvCate;
-    @Bind(R.id.toolbar)
+    @Bind(R.id.toolbarHeader)
     Toolbar toolbar;
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawer;
@@ -136,7 +141,10 @@ public class CatalogiesActivity extends AppCompatActivity {
 
         onClickSellFAB();
     }
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
     private void setupViewNavigation() {
         View headerLayout = nvDrawer.inflateHeaderView(R.layout.nav_header);
         tvNavPhonenumber=(TextView)headerLayout.findViewById(R.id.tvNavPhonenumber);
@@ -215,7 +223,15 @@ public class CatalogiesActivity extends AppCompatActivity {
     public void popularView() {
         cateAdapter = new CategoryAdapter(firebase, this,mUser);
         rvCate.setHasFixedSize(true);
-        rvCate.setLayoutManager(new LinearLayoutManager(this));
+        StaggeredGridLayoutManager gridLayoutManager =
+                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        rvCate.setLayoutManager(gridLayoutManager);
+        rvCate.setItemAnimator(new SlideInUpAnimator());
+        //RecyclerView.ItemDecoration itemDecoration =
+        //       new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
+        //set space for each photo in recycleview
+        SpacesItemDecoration itemDecoration = new SpacesItemDecoration(8);
+        rvCate.addItemDecoration(itemDecoration);
         rvCate.setAdapter(cateAdapter);
     }
 

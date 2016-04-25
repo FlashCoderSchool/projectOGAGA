@@ -6,7 +6,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/AppTheme.Widget.TextView</item>
+        <item name="android:spinnerItemStyle">@style/spinnerItemStyle</item>
+        <item name="android:spinnerDropDownItemStyle">@style/spinnerDropDownItemStyle</item>
     </style>
+
+    <style name="AppTheme.Widget"/>
+    <style name="AppTheme.Widget.TextView">
+        <!--<item name="fontPath">Junction.otf</item>-->
+    </style>
+
 
     <!-- Splash Screen Theme -->
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
@@ -24,13 +33,44 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="ivAvatar">
-        <item name="android:layout_width">52dp</item>
-        <item name="android:layout_height">52dp</item>
+        <item name="android:layout_width">170dp</item>
+        <item name="android:layout_height">120dp</item>
         <item name="android:scaleType">fitXY</item>
-    </style>
-    <style name="hyperlink">
-        <item name="android:textColor">@android:color/holo_blue_dark</item>
+        <item name="android:layout_marginTop">7dp</item>
+        <item name="android:background">@drawable/border_image</item>
     </style>
 
-    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
-</resources>
+
+     <style name="input">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/font_size_medium</item>
+        <item name="android:paddingTop">17dp</item>
+    </style>
+
+    <style name="submit">
+        <item name="android:layout_width">@dimen/submit_width</item>
+        <item name="android:layout_height">@dimen/submit_height</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/border_button</item>
+     </style>
+
+     <style name="hyperlink">
+         <item name="android:textColor">@android:color/holo_blue_dark</item>
+     </style>
+
+     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+     </style>
+
+
+
+    <style name="spinnerItemStyle">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="spinnerDropDownItemStyle">
+        <item name="android:gravity">center</item>
+    </style>
+
+ </resources>

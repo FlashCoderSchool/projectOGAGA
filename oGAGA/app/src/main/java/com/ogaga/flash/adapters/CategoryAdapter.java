@@ -38,7 +38,10 @@ public class CategoryAdapter extends FirebaseRecyclerAdapter<Catalogies,Category
         viewHolder.bindUser(mUser);
          viewHolder.tvName.setText(catalogies.getName());
         //holder.ivImage.setImageResource(cate.getLocalImage());
-         Picasso.with(context).load(catalogies.getUrl()).into(viewHolder.ivImage);
+        Picasso.with(context)
+                .load(catalogies.getUrl())
+                .fit().centerCrop()
+                .into(viewHolder.ivImage);
     }
 
    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

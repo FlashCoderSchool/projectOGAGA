@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.ogaga.flash.acitivies.UserRegistryActivity">
-    <TableLayout
+    android:gravity="center"
+    tools:context=".acitivies.UserRegistryActivity">
+
+    <!-- The ActionBar displayed at the top-->
+    <include
+        layout="@layout/setting_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+   <!--<TableLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:stretchColumns="2">
+        android:stretchColumns="2"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        >
+
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
@@ -105,6 +118,64 @@
                 android:id="@+id/btnRegistry"
                 android:layout_column="2"/>
         </TableRow>
-
-    </TableLayout>
+    </TableLayout>-->
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal">
+    <ImageView
+        android:id="@+id/ivAvatar"
+        style="@style/ivAvatar"
+        android:padding="5dp"
+        android:contentDescription="@string/imageDescription"
+        android:layout_gravity="left"
+        />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:src="@drawable/camera"
+        android:id="@+id/btnChooseImage"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/ivAvatar"
+        android:layout_toEndOf="@+id/ivAvatar" />
 </RelativeLayout>
+
+    <EditText
+        android:id="@+id/etPhoneNumber"
+        style="@style/input"
+        android:inputType="phone"
+        android:hint="@string/phonenumber" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        style="@style/input"
+        android:inputType="textPassword"
+        android:hint="@string/password" />
+
+    <EditText
+        android:id="@+id/etConfirmPassword"
+        android:inputType="textPassword"
+        style="@style/input"
+        android:hint="@string/confirm_password" />
+
+    <EditText
+        android:id="@+id/etFullname"
+        style="@style/input"
+        android:hint="@string/full_name" />
+
+    <EditText
+        android:id="@+id/etAdressUser"
+        style="@style/input"
+        android:maxLines="3"
+        android:minLines="1"
+        android:hint="@string/address_user" />
+
+
+    <Button
+        style="@style/submit"
+        android:id="@+id/btnRegistry"
+        android:text="@string/registry_user"
+        android:layout_marginTop="20dp"
+        />
+</LinearLayout>

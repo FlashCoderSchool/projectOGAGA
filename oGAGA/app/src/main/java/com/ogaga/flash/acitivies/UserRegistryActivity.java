@@ -13,7 +13,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,13 +50,16 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class UserRegistryActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private GoogleApiClient mGoogleApiClient;
-    @Bind(R.id.btnChoseAvatar)
-    Button btnChoseAvatar;
+    @Bind(R.id.toolbarHeader)
+    Toolbar toolbar;
+    @Bind(R.id.btnChooseImage)
+    ImageView ivChooseImage;
     @Bind(R.id.btnRegistry)
     Button btnRegistry;
     @Bind(R.id.etAdressUser)
@@ -81,6 +86,9 @@ public class UserRegistryActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_registry);
         ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Sign up");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getMyLocation();
         Firebase.setAndroidContext(this);
         mFirebaseClient = FirebaseClient.getUsers();
@@ -110,9 +118,21 @@ public class UserRegistryActivity extends AppCompatActivity implements
             }
         };
     }
-
-
-    @OnClick(R.id.btnChoseAvatar)
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // This is the up button
+            case android.R.id.home:
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    @OnClick(R.id.btnChooseImage)
     public void onPickPhoto(View view) {
         // Create intent for picking a photo from the gallery
         Intent intent = new Intent(Intent.ACTION_PICK,

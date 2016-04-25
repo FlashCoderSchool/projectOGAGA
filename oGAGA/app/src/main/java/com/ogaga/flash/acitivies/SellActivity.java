@@ -1,12 +1,15 @@
 package com.ogaga.flash.acitivies;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -44,10 +47,11 @@ import java.util.Locale;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SellActivity extends AppCompatActivity{
 
-    @Bind(R.id.btnChoseAvatar)Button btnChoseAvatar;
+    @Bind(R.id.btnChooseImage)ImageView btnChoseAvatar;
     @Bind(R.id.etProductname)EditText etProductname;
     @Bind(R.id.spProductType)Spinner spProductType;
     @Bind(R.id.etProductPrice)EditText etProductPrice;
@@ -55,8 +59,10 @@ public class SellActivity extends AppCompatActivity{
     @Bind(R.id.spProductStatus)Spinner spProductStatus;
     @Bind(R.id.etDateStart)EditText etDateStart;
     @Bind(R.id.etDateFinished)EditText etDateFinished;
-    @Bind(R.id.trDateFinished)TableRow trDateFinished;
-    @Bind(R.id.trDateStart)TableRow trDateStart;
+    @Bind(R.id.toolbarHeader)
+    Toolbar toolbar;
+   // @Bind(R.id.trDateFinished)TableRow trDateFinished;
+   // @Bind(R.id.trDateStart)TableRow trDateStart;
     @Bind(R.id.ivAvatar)ImageView ivAvatar;
     private long mStartDate;
     private long mFinishedDate;
@@ -67,6 +73,9 @@ public class SellActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell);
         ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Product");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mUser= Parcels.unwrap(getIntent().getParcelableExtra("user"));
         setupProductType();
         setupProdcutStatus();
@@ -81,7 +90,16 @@ public class SellActivity extends AppCompatActivity{
         // Apply the adapter to the spinner
         spProductUnit.setAdapter(adapter);
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // This is the up button
+            case android.R.id.home:
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     private void setupProductType() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.product_type, android.R.layout.simple_spinner_item);
@@ -101,24 +119,34 @@ public class SellActivity extends AppCompatActivity{
         spProductStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                trDateFinished.setVisibility(View.VISIBLE);
-                trDateStart.setVisibility(View.VISIBLE);
+               // trDateFinished.setVisibility(View.VISIBLE);
+              //  trDateStart.setVisibility(View.VISIBLE);
+                etDateFinished.setVisibility(View.VISIBLE);
+                etDateStart.setVisibility(View.VISIBLE);
                 switch (position) {
                     case 0: {
-                        trDateFinished.setVisibility(View.VISIBLE);
-                        trDateStart.setVisibility(View.VISIBLE);
+                        //trDateFinished.setVisibility(View.VISIBLE);
+                        //trDateStart.setVisibility(View.VISIBLE);
+                        etDateFinished.setVisibility(View.VISIBLE);
+                        etDateStart.setVisibility(View.VISIBLE);
                         break;
                     }
                     case 1: {
-                        trDateStart.setVisibility(View.INVISIBLE);
+                        //trDateStart.setVisibility(View.INVISIBLE);
                         mStartDate=System.currentTimeMillis();
-                        trDateFinished.setVisibility(View.VISIBLE);
+                        etDateStart.setVisibility(View.VISIBLE);
+                        etDateFinished.setVisibility(View.VISIBLE);
+                        // trDateFinished.setVisibility(View.VISIBLE);
+
                     }
                     case 2: {
-                        trDateStart.setVisibility(View.INVISIBLE);
+                        //trDateStart.setVisibility(View.INVISIBLE);
+                        //trDateFinished.setVisibility(View.INVISIBLE);
                         mStartDate=System.currentTimeMillis();
-                        trDateFinished.setVisibility(View.INVISIBLE);
                         mFinishedDate=System.currentTimeMillis();
+                        etDateStart.setVisibility(View.VISIBLE);
+                        etDateFinished.setVisibility(View.VISIBLE);
+
                     }
                 }
             }
@@ -129,8 +157,11 @@ public class SellActivity extends AppCompatActivity{
             }
         });
     }
-
-    @OnClick(R.id.btnChoseAvatar)
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+    @OnClick(R.id.btnChooseImage)
     public void onPickPhoto(View view) {
         // Create intent for picking a photo from the gallery
         Intent intent = new Intent(Intent.ACTION_PICK,
