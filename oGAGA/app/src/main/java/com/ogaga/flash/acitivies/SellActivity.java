@@ -271,14 +271,16 @@ public class SellActivity extends AppCompatActivity{
                             product.setId(id + 1);
                             product.setUrl(imageResponse.data.link);
                             product.setName(etProductname.getText().toString());
-                            product.setId_productType(spProductType.getSelectedItemPosition()+1);
-                            product.setId_productStatus(spProductStatus.getSelectedItemPosition()+1);
-                            product.setId_unit(spProductUnit.getSelectedItemPosition()+1);
+                            product.setId_productType(spProductType.getSelectedItemPosition() + 1);
+                            product.setId_productStatus(spProductStatus.getSelectedItemPosition() + 1);
+                            product.setId_unit(spProductUnit.getSelectedItemPosition() + 1);
                             product.setId_shipping(0);//Define
                             product.setCreate_at(System.currentTimeMillis());
                             product.setStart_date(mStartDate);
                             product.setFinished_date(mFinishedDate);
-                            product.setUser(mUser);
+                            long prices=Long.parseLong(etProductPrice.getText().toString());
+                            product.setPrices(prices);
+                            product.setId_userSell(mUser.getId());
                             Firebase firebaseProduct=firebaseProducts.child(String.valueOf(product.getId()));
                             firebaseProduct.setValue(product);
                             //

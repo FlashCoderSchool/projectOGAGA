@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:src="@drawable/camera"
+        android:id="@+id/ivAvatar"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/ivAvatar"
+        android:layout_toEndOf="@+id/ivAvatar" />
+    <TextView
+        android:text="@string/full_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvFullName"/>
+    <TextView
+        android:text="@string/phonenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:id="@+id/tvPhonenumber"/>
+    <TextView
+        android:text="@string/address_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:id="@+id/tvAddresuser"/>
+    <TextView
+        android:text="@string/order_totals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:id="@+id/tvOrderCount"/>
+    <TextView
+        android:text="@string/order_totals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:id="@+id/tvOrderTotal"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnShippied"/>
+</LinearLayout>

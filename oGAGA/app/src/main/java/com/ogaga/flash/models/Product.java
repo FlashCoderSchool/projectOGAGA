@@ -20,7 +20,7 @@ public class Product {
     private long id_shipping;
     private long id_unit;
     private long id_productType;
-    private User user;
+    private long id_userSell;
     private List<Order> orders;
 
     public List<Order> getOrders() {
@@ -29,14 +29,6 @@ public class Product {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public long getId() {
@@ -130,7 +122,15 @@ public class Product {
     public Product() {
     }
 
-    public Product(long id, String name, String url, long prices, long id_productStatus, long create_at, long start_date, long finished_date, long id_shipping, long id_unit, long id_productType, User user, List<Order> orders) {
+    public long getId_userSell() {
+        return id_userSell;
+    }
+
+    public void setId_userSell(long id_userSell) {
+        this.id_userSell = id_userSell;
+    }
+
+    public Product(long id, String name, String url, long prices, long id_productStatus, long create_at, long start_date, long finished_date, long id_shipping, long id_unit, long id_productType, long id_userSell, List<Order> orders) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -142,7 +142,7 @@ public class Product {
         this.id_shipping = id_shipping;
         this.id_unit = id_unit;
         this.id_productType = id_productType;
-        this.user = user;
+        this.id_userSell = id_userSell;
         this.orders = orders;
     }
 }

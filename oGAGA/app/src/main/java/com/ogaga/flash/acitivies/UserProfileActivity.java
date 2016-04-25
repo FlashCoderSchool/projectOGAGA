@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.ogaga.flash.Fragments.ProfileBuyerFragment;
-import com.ogaga.flash.Fragments.ProfileSellerFragment;
+import com.ogaga.flash.fragments.ProfileBuyerFragment;
+import com.ogaga.flash.fragments.ProfileSellerFragment;
 import com.ogaga.flash.R;
 import com.ogaga.flash.models.User;
 import com.squareup.picasso.Picasso;

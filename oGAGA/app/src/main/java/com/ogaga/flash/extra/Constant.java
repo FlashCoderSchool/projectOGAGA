@@ -6,4 +6,7 @@ package com.ogaga.flash.extra;
 public class Constant {
     public static final int LOGIN_SUCCESS_CODE=1021;
     public static final int REGISTRY_SUCCESS_CODE=1022;
+
+    public static final int ORDER_NOT_SHIPPING=1;
+    public static final int ORDER_SHIPPED=0;
 }

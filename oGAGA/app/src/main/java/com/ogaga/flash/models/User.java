@@ -18,6 +18,8 @@ import com.ogaga.flash.imgurmodel.ImageResponse;
 import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
 
+import java.util.List;
+
 
 /**
  * Created by Kanet on 4/13/2016.
@@ -37,7 +39,6 @@ public class User {
     public String getEmail() {
         return this.phonenumber+"@ogaga.com";
     }
-
 
     public long getId() {
         return id;

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+import com.firebase.client.Query;
 import com.ogaga.flash.R;
 import com.ogaga.flash.adapters.ProductRecyclerViewAdapter;
 import com.ogaga.flash.clients.FirebaseClient;
@@ -47,7 +48,7 @@ public class TimeLineActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        fbProduct = FirebaseClient.getProduct();
+
 
         populateProductListView();
         onClickSellFAB();
@@ -71,7 +72,9 @@ public class TimeLineActivity extends AppCompatActivity {
     }
 
     public void populateProductListView() {
-        mProductRecyclerViewAdapter = new ProductRecyclerViewAdapter(fbProduct, this,mUser);
+        Firebase firebaseProduct  = FirebaseClient.getProduct();
+        Query query=firebaseProduct.orderByChild("id_productType").equalTo(mCatalogies.getId());
+        mProductRecyclerViewAdapter = new ProductRecyclerViewAdapter(query, this,mUser);
         rvProductList.setHasFixedSize(true);
         rvProductList.setLayoutManager(new LinearLayoutManager(this));
         rvProductList.setAdapter(mProductRecyclerViewAdapter);

@@ -85,7 +85,6 @@ public class CatalogiesActivity extends AppCompatActivity {
         mUser=Parcels.unwrap(getIntent().getParcelableExtra("user"));
         Firebase.setAndroidContext(this);
         drawerToggle = setupDrawerToggle();
-        firebase = FirebaseClient.getCatalogies();
 
         // Tie DrawerLayout events to the ActionBarToggle
         nvDrawer.setNavigationItemSelectedListener(

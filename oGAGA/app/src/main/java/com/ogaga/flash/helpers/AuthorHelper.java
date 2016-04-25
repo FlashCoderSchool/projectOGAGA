@@ -8,16 +8,16 @@ import android.content.SharedPreferences;
  */
 public class AuthorHelper {
     public static void writeString(Context context, final String KEY, String property) {
-        SharedPreferences.Editor editor = context.getSharedPreferences("authorFirebase", context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = context.getSharedPreferences("authorFirebase", Context.MODE_PRIVATE).edit();
         editor.putString(KEY, property);
         editor.commit();
     }
 
     public static String readString(Context context, final String KEY) {
-        return context.getSharedPreferences("authorFirebase", context.MODE_PRIVATE).getString(KEY, null);
+        return context.getSharedPreferences("authorFirebase", Context.MODE_PRIVATE).getString(KEY, null);
     }
 
     public static void clearUser(Context context) {
-        context.getSharedPreferences("authorFirebase",context.MODE_PRIVATE).edit().clear();
+        context.getSharedPreferences("authorFirebase", Context.MODE_PRIVATE).edit().clear().commit();
     }
 }
