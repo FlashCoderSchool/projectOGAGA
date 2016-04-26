@@ -94,7 +94,7 @@ public class CatalogiesActivity extends AppCompatActivity {
                         //selectDrawerItem(menuItem);
                         switch (menuItem.getItemId()) {
                             case R.id.navSetting:
-                                Intent intent = new Intent(CatalogiesActivity.this, UserRegistryActivity.class);
+                                Intent intent = new Intent(CatalogiesActivity.this, LoginActivity.class);
                                 startActivity(intent);
                                 break;
                             case R.id.navUserProfile:

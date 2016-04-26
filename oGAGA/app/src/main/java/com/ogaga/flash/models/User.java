@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Parcel
 public class User {
-    private long id;
+    private long id_user;
     private String fullname;
     private String profile_image;
     private String address_user;
@@ -38,10 +38,6 @@ public class User {
     private String email;
     public String getEmail() {
         return this.phonenumber+"@ogaga.com";
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getFullname() {
@@ -80,8 +76,12 @@ public class User {
         return created_at;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public long getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(long id_user) {
+        this.id_user = id_user;
     }
 
     public void setFullname(String fullname) {
@@ -113,8 +113,8 @@ public class User {
         this.created_at = created_at;
     }
 
-    public User(long id, String fullname, String profile_image, String address_user, String location, long followed_count, String phonenumber, long success_transaction, long created_at) {
-        this.id = id;
+    public User(long id_user, String fullname, String profile_image, String address_user, String location, long followed_count, String phonenumber, long success_transaction, long created_at) {
+        this.id_user = id_user;
         this.fullname = fullname;
         this.profile_image = profile_image;
         this.address_user = address_user;

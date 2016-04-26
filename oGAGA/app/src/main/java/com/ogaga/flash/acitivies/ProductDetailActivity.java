@@ -59,7 +59,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.fabSell)
     public void onClickOrder(View view){
-        if (mProduct.getId_userSell()==mUser.getId()){
+        if (mProduct.getId_userSell()==mUser.getId_user()){
             final OrderViewFragment settingFragment=new OrderViewFragment();
             Bundle bundle=new Bundle();
             bundle.putParcelable("product",Parcels.wrap(mProduct));

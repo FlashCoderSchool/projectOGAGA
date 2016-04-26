@@ -117,6 +117,32 @@ public class UserRegistryActivity extends AppCompatActivity implements
 
             }
         };
+
+        locationListenerNetwork = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                updateLocation(location);
+            /*    Uri gmmIntentUri = Uri.parse("geo:"+currentLocation.getLatitude()+","+currentLocation.getLongitude());
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);*/
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
     }
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -227,7 +253,7 @@ public class UserRegistryActivity extends AppCompatActivity implements
                                 } else {
                                     User user = new User();
                                     long id = currentData.getChildrenCount();
-                                    user.setId(id + 1);
+                                    user.setId_user(id + 1);
                                     user.setAddress_user(etAddressuser.getText().toString());
                                     user.setCreated_at(System.currentTimeMillis());
                                     user.setFullname(etFullname.getText().toString());

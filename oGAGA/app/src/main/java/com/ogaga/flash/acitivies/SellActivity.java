@@ -280,7 +280,7 @@ public class SellActivity extends AppCompatActivity{
                             product.setFinished_date(mFinishedDate);
                             long prices=Long.parseLong(etProductPrice.getText().toString());
                             product.setPrices(prices);
-                            product.setId_userSell(mUser.getId());
+                            product.setId_userSell(mUser.getId_user());
                             Firebase firebaseProduct=firebaseProducts.child(String.valueOf(product.getId()));
                             firebaseProduct.setValue(product);
                             //
