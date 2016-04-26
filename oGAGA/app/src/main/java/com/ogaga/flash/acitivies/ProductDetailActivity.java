@@ -59,7 +59,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.fabSell)
     public void onClickOrder(View view){
-        if (mProduct.getId_userSell()==mUser.getId_user()){
+        if (mProduct.getUserSell().getId_user()==mUser.getId_user()){
             final OrderViewFragment settingFragment=new OrderViewFragment();
             Bundle bundle=new Bundle();
             bundle.putParcelable("product",Parcels.wrap(mProduct));
@@ -67,6 +67,9 @@ public class ProductDetailActivity extends AppCompatActivity {
             settingFragment.show(getFragmentManager(),"orderView");
         }else{
             final OrderProductFragment settingFragment=new OrderProductFragment();
+            Bundle bundle=new Bundle();
+            bundle.putParcelable("product",Parcels.wrap(mProduct));
+            settingFragment.setArguments(bundle);
             final Firebase firebaseOrders=FirebaseClient.getProduct().child(String.valueOf(mProduct.getId())).child("orders");
             settingFragment.setOnOrderListener(new OrderProductFragment.OnOrderListener() {
                                                    @Override
