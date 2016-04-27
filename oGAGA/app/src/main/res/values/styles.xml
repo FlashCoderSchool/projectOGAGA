@@ -13,7 +13,7 @@
 
     <style name="AppTheme.Widget"/>
     <style name="AppTheme.Widget.TextView">
-        <!--<item name="fontPath">Junction.otf</item>-->
+    <item name="fontPath">Junction.otf</item>
     </style>
 
 
@@ -28,7 +28,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
@@ -71,6 +72,12 @@
 
     <style name="spinnerDropDownItemStyle">
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="AppThemeProgress" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:textColor">@color/iron</item>
+        <item name="android:background">@color/md_white_1000</item>
     </style>
 
  </resources>
