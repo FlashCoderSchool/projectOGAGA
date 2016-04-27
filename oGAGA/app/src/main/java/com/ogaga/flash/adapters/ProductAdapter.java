@@ -42,8 +42,12 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Product,ProductAdapt
         @Bind(R.id.tvProductName) TextView tvProductName;
         @Bind(R.id.tvProducer) TextView tvProducer;
 //        @Bind(R.id.tvProductOrigin) TextView tvProductOrigin;
-        @Bind(R.id.tvProductPrice) TextView tvProductPrice;
 //        @Bind(R.id.ivProductStatus) ImageView ivProductStatusImage;
+
+        //@Bind(R.id.tvProductOrigin) TextView tvProductOrigin;
+        @Bind(R.id.tvProductPrice) TextView tvProductPrice;
+        //@Bind(R.id.ivProductStatus) ImageView ivProductStatusImage;
+
         @Bind(R.id.tvProductStatus) TextView tvProductStatus;
         @Bind(R.id.rivProducerPhoto)
         RoundedImageView rivProducerPhoto;
