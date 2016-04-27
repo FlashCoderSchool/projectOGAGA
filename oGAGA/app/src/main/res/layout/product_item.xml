@@ -8,7 +8,11 @@
         android:id="@+id/layoutTop"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+<<<<<<< HEAD
         android:background="@color/md_grey_300">
+=======
+        android:background="@color/md_green_800">
+>>>>>>> c8312960a6a6315a373edb4a8302965206e0c39f
 
         <View
             android:layout_width="match_parent"
@@ -37,6 +41,7 @@
             android:layout_alignParentEnd="true"/>
     </RelativeLayout>
 
+<<<<<<< HEAD
 
     <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                                                      android:id="@+id/rivProducerPhoto"
@@ -57,12 +62,38 @@
                                                      app:riv_oval="true"
                                                      app:riv_tile_mode="repeat"/>
 
+=======
+
+    <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     android:id="@+id/rivProducerProfile"
+                                                     android:layout_width="60dp"
+                                                     android:layout_height="60dp"
+                                                     android:layout_above="@id/layoutBottom"
+                                                     android:layout_alignParentLeft="true"
+                                                     android:layout_centerHorizontal="true"
+                                                     android:layout_marginBottom="-30dp"
+                                                     android:layout_marginLeft="4dp"
+                                                     android:layout_marginRight="4dp"
+                                                     android:elevation="18dp"
+                                                     android:scaleType="fitCenter"
+                                                     app:riv_border_color="#FFFFFF"
+                                                     app:riv_border_width="2dip"
+                                                     app:riv_corner_radius="30dip"
+                                                     app:riv_mutate_background="true"
+                                                     app:riv_oval="true"
+                                                     app:riv_tile_mode="repeat"/>
+
+>>>>>>> c8312960a6a6315a373edb4a8302965206e0c39f
     <TextView
         android:id="@+id/tvProducer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/layoutTop"
+<<<<<<< HEAD
         android:layout_toRightOf="@id/rivProducerPhoto"
+=======
+        android:layout_toRightOf="@id/rivProducerProfile"
+>>>>>>> c8312960a6a6315a373edb4a8302965206e0c39f
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Producer Name"
@@ -73,7 +104,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvProducer"
+<<<<<<< HEAD
         android:layout_toRightOf="@id/rivProducerPhoto"
+=======
+        android:layout_toRightOf="@id/rivProducerProfile"
+>>>>>>> c8312960a6a6315a373edb4a8302965206e0c39f
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Product Name"
@@ -85,23 +120,39 @@
         <!--android:id="@+id/ivProductStatus"-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
+<<<<<<< HEAD
         <!--android:layout_above="@id/ivProductImage"-->
         <!--android:layout_alignParentRight="true"-->
         <!--android:layout_marginBottom="3dp"-->
         <!--android:layout_marginRight="3dp"-->
         <!--android:src="@drawable/pink_heart"-->
+=======
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_above="@id/ivProductImage"-->
+        <!--android:src="@drawable/pink_heart"-->
+        <!--android:layout_marginRight="3dp"-->
+        <!--android:layout_marginBottom="3dp"-->
+>>>>>>> c8312960a6a6315a373edb4a8302965206e0c39f
         <!--/>-->
 
 
     <ImageView
         android:id="@+id/ivProductImage"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="300sp"
+=======
+        android:layout_height="wrap_content"
+>>>>>>> c8312960a6a6315a373edb4a8302965206e0c39f
         android:layout_below="@+id/layoutBottom"
         android:layout_marginTop="2dp"
         android:adjustViewBounds="true"
         android:minHeight="50dp"
+<<<<<<< HEAD
         android:scaleType="fitXY"
+=======
+        android:scaleType="centerCrop"
+>>>>>>> c8312960a6a6315a373edb4a8302965206e0c39f
         android:src="@drawable/im_placeholder"/>
 
     <TextView
@@ -120,12 +171,21 @@
         android:textStyle="italic"/>
 
     <!--<TextView-->
+<<<<<<< HEAD
     <!--android:layout_width="wrap_content"-->
     <!--android:layout_height="wrap_content"-->
     <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
     <!--android:text="Address"-->
     <!--android:id="@+id/tvProductOrigin"-->
     <!--android:layout_below="@+id/tvProductName"/>-->
+=======
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="Address"-->
+        <!--android:id="@+id/tvProductOrigin"-->
+        <!--android:layout_below="@+id/tvProductName"/>-->
+>>>>>>> c8312960a6a6315a373edb4a8302965206e0c39f
 
     <!--<View-->
     <!--android:id="@+id/vDivider"-->

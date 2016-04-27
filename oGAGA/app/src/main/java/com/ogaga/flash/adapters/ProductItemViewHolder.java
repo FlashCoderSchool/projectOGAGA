@@ -32,7 +32,11 @@ public class ProductItemViewHolder extends RecyclerView.ViewHolder implements Vi
 //    @Bind(R.id.tvProductOrigin) TextView productOrigin;
     @Bind(R.id.tvProductPrice) TextView productPrice;
 //    @Bind(R.id.ivProductStatus) ImageView productStatusImage;
+<<<<<<< HEAD
     @Bind(R.id.tvProductStatus) TextView productStatus;
+=======
+//    @Bind(R.id.tvProductStatus) TextView productStatus;
+>>>>>>> c8312960a6a6315a373edb4a8302965206e0c39f
     Product mProduct;
     User mUser;
     public ProductItemViewHolder(View itemView) {
