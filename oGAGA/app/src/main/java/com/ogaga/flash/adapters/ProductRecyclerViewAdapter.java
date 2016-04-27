@@ -29,8 +29,8 @@ public class ProductRecyclerViewAdapter extends FirebaseRecyclerAdapter<Product,
         viewHolder.bind(product);
         Picasso.with(context).load(product.getUrl()).into(viewHolder.productImage);
         viewHolder.productName.setText(product.getName());
-      /* viewHolder.producer.setText(product.getUser().getFullname());
-        viewHolder.productOrigin.setText(product.getUser().getAddress_user());*/
+       viewHolder.producer.setText(product.getUserSell().getFullname());
+        //viewHolder.productOrigin.setText(product.getUserSell().getAddress_user());
         viewHolder.productPrice.setText(String.valueOf(product.getPrices()));
 //        viewHolder.productStatus.setText(product.getStatus());
     }
