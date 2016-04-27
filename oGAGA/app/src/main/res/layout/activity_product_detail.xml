@@ -1,72 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.ogaga.flash.acitivies.ProductDetailActivity">
 
-    <LinearLayout
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/ivProductDetailImage"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:src="@drawable/im_placeholder"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvProductDetailName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/md_cyan_A100"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="Product Detail Name"/>
+            <LinearLayout
+                android:id="@+id/viewA"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:orientation="horizontal">
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                      android:id="@+id/iv_Producer_Avatar"
-                                                      android:layout_width="96dp"
-                                                      android:layout_height="96dp"
-                                                      android:scaleType="centerCrop"
-                                                      android:src="@drawable/im_placeholder"
-                                                      app:civ_border_color="#f00000"
-                                                      app:civ_border_width="2dp"/>
-        </FrameLayout>
-        <TextView
-            android:id="@+id/tvProductDetailOrigin"
+                <ImageView
+
+                    android:id="@+id/ivPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:minHeight="50dp"
+                    android:scaleType="centerCrop"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/viewB"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/tvCaption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@color/colorPrimary"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="3"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Test"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/tvCaption"
+                    android:background="@drawable/shadow_detail"
+                    >
+                </View>
+
+                <ListView
+                    android:id="@+id/lvComments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/tvCaption"
+                    android:layout_marginTop="10dp"
+                    >
+                </ListView>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabBuy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Product Origin"/>
-        <TextView
-            android:id="@+id/tvProductDetailStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Best for:"/>
-        <TextView
-            android:id="@+id/tvProductDetailPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Product Price"/>
-        <TextView
-            android:id="@+id/tvFullName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Product description"/>
-    </LinearLayout>
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:src="@android:drawable/ic_input_add"
+            app:layout_anchor="@id/viewA"
+            app:layout_anchorGravity="bottom|right|end"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabSell"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_input_add"/>
-</android.support.design.widget.CoordinatorLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

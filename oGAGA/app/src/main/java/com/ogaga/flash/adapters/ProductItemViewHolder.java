@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ogaga.flash.R;
 import com.ogaga.flash.acitivies.ProductDetailActivity;
@@ -25,10 +24,10 @@ public class ProductItemViewHolder extends RecyclerView.ViewHolder implements Vi
     ImageView productImage;
     @Bind(R.id.tvProductName) TextView productName;
     @Bind(R.id.tvProducer) TextView producer;
-    @Bind(R.id.tvProductOrigin) TextView productOrigin;
+//    @Bind(R.id.tvProductOrigin) TextView productOrigin;
     @Bind(R.id.tvProductPrice) TextView productPrice;
-    @Bind(R.id.ivProductStatus) ImageView productStatusImage;
-    @Bind(R.id.tvProductStatus) TextView productStatus;
+//    @Bind(R.id.ivProductStatus) ImageView productStatusImage;
+//    @Bind(R.id.tvProductStatus) TextView productStatus;
     Product mProduct;
     User mUser;
     public ProductItemViewHolder(View itemView) {
