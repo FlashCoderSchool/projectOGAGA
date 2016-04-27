@@ -1,9 +1,6 @@
-package com.ogaga.flash.Fragments;
+package com.ogaga.flash.fragments;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +8,10 @@ import android.view.ViewGroup;
 import com.firebase.client.Firebase;
 import com.firebase.client.Query;
 import com.firebase.client.annotations.Nullable;
-import com.ogaga.flash.adapters.CategoryAdapter;
-import com.ogaga.flash.adapters.ProductAdapter;
 import com.ogaga.flash.clients.FirebaseClient;
-import com.ogaga.flash.models.Product;
 import com.ogaga.flash.models.User;
 
 import org.parceler.Parcels;
-
-import java.util.List;
 
 /**
  * Created by carot on 4/21/2016.
@@ -51,7 +43,7 @@ public class ProfileSellerFragment extends ProfileFragment {
         super.onCreate(savedInstanceState);
         mUser=Parcels.unwrap(getArguments().getParcelable("user"));
         mFirebase= FirebaseClient.getProduct();
-        Query query =mFirebase.orderByChild("id_user").equalTo(mUser.getId());
+        Query query =mFirebase.orderByChild("id_user").equalTo(mUser.getId_user());
         addAll(query);
     }
 

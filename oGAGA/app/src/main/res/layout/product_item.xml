@@ -1,76 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="10dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="10dp">
 
-    <ImageView
-        android:id="@+id/ivProductImage"
-        android:layout_alignParentTop="true"
-        android:layout_gravity="center_horizontal"
-        android:scaleType="fitStart"
-        android:layout_width="100dp"
-        android:layout_height="75dp"
-        android:src="@drawable/im_placeholder"
-         />
+    <RelativeLayout
+        android:id="@+id/layoutTop"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/md_grey_300">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical"
-        android:paddingLeft="10dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@drawable/shadow"></View>
 
-        <TextView
-            android:id="@+id/tvProductName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/product_name"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tvProducer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/full_name"
-            android:textAppearance="?android:textAppearanceMedium"/>
-
-        <TextView
-            android:id="@+id/tvProductOrigin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/address_user"
-            android:textAppearance="?android:textAppearanceMedium"/>
-
-        <TextView
-            android:id="@+id/tvProductPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/item_product_price"
-            android:textAppearance="?android:textAppearanceMedium"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="10dp">
-
-        <ImageView
-            android:id="@+id/ivProductStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/im_loading_64"/>
+    <RelativeLayout
+        android:id="@+id/layoutBottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/layoutTop"
+        android:elevation="15dp">
 
         <TextView
             android:id="@+id/tvProductStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/product_status"/>
-    </LinearLayout>
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="14 days"
+            android:textSize="15sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
 
-</LinearLayout>
+
+    <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     android:id="@+id/rivProducerPhoto"
+                                                     android:layout_width="60dp"
+                                                     android:layout_height="60dp"
+                                                     android:layout_above="@id/layoutBottom"
+                                                     android:layout_alignParentLeft="true"
+                                                     android:layout_centerHorizontal="true"
+                                                     android:layout_marginBottom="-30dp"
+                                                     android:layout_marginLeft="4dp"
+                                                     android:layout_marginRight="4dp"
+                                                     android:elevation="18dp"
+                                                     android:scaleType="fitCenter"
+                                                     app:riv_border_color="#FFFFFF"
+                                                     app:riv_border_width="2dip"
+                                                     app:riv_corner_radius="30dip"
+                                                     app:riv_mutate_background="true"
+                                                     app:riv_oval="true"
+                                                     app:riv_tile_mode="repeat"/>
+
+    <TextView
+        android:id="@+id/tvProducer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutTop"
+        android:layout_toRightOf="@id/rivProducerPhoto"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Producer Name"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/tvProductName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProducer"
+        android:layout_toRightOf="@id/rivProducerPhoto"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Product Name"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <!--<ImageView-->
+        <!--android:id="@+id/ivProductStatus"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_above="@id/ivProductImage"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginBottom="3dp"-->
+        <!--android:layout_marginRight="3dp"-->
+        <!--android:src="@drawable/pink_heart"-->
+        <!--/>-->
+
+
+    <ImageView
+        android:id="@+id/ivProductImage"
+        android:layout_width="match_parent"
+        android:layout_height="300sp"
+        android:layout_below="@+id/layoutBottom"
+        android:layout_marginTop="2dp"
+        android:adjustViewBounds="true"
+        android:minHeight="50dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/im_placeholder"/>
+
+    <TextView
+        android:id="@+id/tvProductPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ivProductImage"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="3"
+        android:text="Price"
+        android:textColor="@color/md_red_300"
+        android:textSize="25sp"
+        android:textStyle="italic"/>
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+    <!--android:text="Address"-->
+    <!--android:id="@+id/tvProductOrigin"-->
+    <!--android:layout_below="@+id/tvProductName"/>-->
+
+    <!--<View-->
+    <!--android:id="@+id/vDivider"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:layout_below="@id/tvProductName"-->
+    <!--android:layout_marginBottom="3dp"-->
+    <!--android:layout_marginLeft="23dp"-->
+    <!--android:layout_marginRight="23dp"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:background="#CCCCCC"></View>-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/llComments"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/vDivider"-->
+    <!--android:orientation="vertical"></LinearLayout>-->
+</RelativeLayout>

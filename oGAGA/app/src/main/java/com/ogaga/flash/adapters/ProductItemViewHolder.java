@@ -5,8 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.ogaga.flash.R;
 import com.ogaga.flash.acitivies.ProductDetailActivity;
 import com.ogaga.flash.models.Product;
@@ -21,13 +21,17 @@ import butterknife.ButterKnife;
  * Created by IceStone on 4/24/2016.
  */
 public class ProductItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+
     @Bind(R.id.ivProductImage)
     ImageView productImage;
     @Bind(R.id.tvProductName) TextView productName;
+    @Bind(R.id.rivProducerPhoto)
+    RoundedImageView producerPhoto;
     @Bind(R.id.tvProducer) TextView producer;
-    @Bind(R.id.tvProductOrigin) TextView productOrigin;
+//    @Bind(R.id.tvProductOrigin) TextView productOrigin;
     @Bind(R.id.tvProductPrice) TextView productPrice;
-    @Bind(R.id.ivProductStatus) ImageView productStatusImage;
+//    @Bind(R.id.ivProductStatus) ImageView productStatusImage;
     @Bind(R.id.tvProductStatus) TextView productStatus;
     Product mProduct;
     User mUser;

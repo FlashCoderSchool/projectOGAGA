@@ -1,4 +1,4 @@
-package com.ogaga.flash.Fragments;
+package com.ogaga.flash.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,17 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.firebase.client.Firebase;
 import com.firebase.client.Query;
 import com.firebase.client.annotations.Nullable;
 import com.ogaga.flash.R;
 import com.ogaga.flash.adapters.ProductAdapter;
-import com.ogaga.flash.clients.FirebaseClient;
 import com.ogaga.flash.models.Product;
 import com.ogaga.flash.utils.EndlessRecyclerViewScrollListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

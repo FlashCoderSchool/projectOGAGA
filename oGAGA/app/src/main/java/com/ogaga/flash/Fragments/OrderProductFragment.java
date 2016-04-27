@@ -1,4 +1,4 @@
-package com.ogaga.flash.Fragments;
+package com.ogaga.flash.fragments;
 
 
 import android.app.DialogFragment;

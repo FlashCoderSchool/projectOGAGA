@@ -1,4 +1,4 @@
-package com.ogaga.flash.Fragments;
+package com.ogaga.flash.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -43,7 +43,7 @@ public class ProfileBuyerFragment extends ProfileFragment {
         super.onCreate(savedInstanceState);
         mUser=Parcels.unwrap(getArguments().getParcelable("user"));
         mFirebase= FirebaseClient.getProduct();
-        Query query =mFirebase.orderByChild("id_user").equalTo(mUser.getId());
+        Query query =mFirebase.orderByChild("id_user").equalTo(mUser.getId_user());
         addAll(query);
     }
 }
