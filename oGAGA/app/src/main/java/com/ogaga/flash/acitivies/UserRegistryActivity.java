@@ -1,6 +1,7 @@
 package com.ogaga.flash.acitivies;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -205,6 +206,14 @@ public class UserRegistryActivity extends AppCompatActivity implements
 
     @OnClick(R.id.btnRegistry)
     public void registryUser() {
+
+
+        final ProgressDialog progressDialog = new ProgressDialog(UserRegistryActivity.this,
+                R.style.AppThemeProgress);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Creating Account...");
+        progressDialog.show();
+
         btnRegistry.setVisibility(View.INVISIBLE);
         final User user = new User();
         if (etFullname.getText() == null) {
@@ -232,60 +241,72 @@ public class UserRegistryActivity extends AppCompatActivity implements
         Upload upload = new Upload();
         upload.image = new File(DocumentHelper.getPath(this, mPhotoUri));
         upload.description = user.getFullname();
+
+
         new ImgurClient(this, new ImgurClient.ImgurClientListener() {
             @Override
             public void postUploadImage(final ImageResponse imageResponse) {
-                FirebaseClient.getRoot().createUser(user.getEmail(), etPassword.getText().toString(), new Firebase.ValueResultHandler<Map<String, Object>>() {
-                    @Override
-                    public void onSuccess(final Map<String, Object> stringObjectMap) {
-                        User user = new User();
-                        mFirebaseClient.runTransaction(new Transaction.Handler() {
-                            @Override
-                            public Transaction.Result doTransaction(MutableData currentData) {
-                                return Transaction.success(currentData); //we can also abort by calling Transaction.abort()
-                            }
 
-                            @Override
-                            public void onComplete(FirebaseError firebaseError, boolean committed, DataSnapshot currentData) {
-                                //This method will be called once with the results of the transaction.
-                                if (firebaseError != null) {
-                                    System.out.println("Firebase counter increment failed.");
-                                } else {
-                                    User user = new User();
-                                    long id = currentData.getChildrenCount();
-                                    user.setId_user(id + 1);
-                                    user.setAddress_user(etAddressuser.getText().toString());
-                                    user.setCreated_at(System.currentTimeMillis());
-                                    user.setFullname(etFullname.getText().toString());
-                                    String location = "";
-                                    if (currentLocation != null)
-                                        location = String.valueOf(currentLocation.getLatitude()) + "," + String.valueOf(currentLocation.getLongitude());
-                                    user.setLocation(location);
-                                    user.setPhonenumber(etPhonenumber.getText().toString());
-                                    user.setProfile_image(imageResponse.data.link);
-                                    Firebase mUserFirebase = mFirebaseClient.child(stringObjectMap.get("uid").toString());
-                                    mUserFirebase.setValue(user);
-                                    AuthorHelper.writeString(getApplicationContext(), "uid", stringObjectMap.get("uid").toString());
-                                    Toast.makeText(getApplicationContext(), getResources().getText(R.string.registry_success), Toast.LENGTH_LONG).show();
-                                    //
-                                    Intent intent = new Intent();
-                                    intent.putExtra("user", Parcels.wrap(user));
-                                    setResult(Constant.REGISTRY_SUCCESS_CODE, intent);
-                                    finish();//finishing activity
-                                }
-                            }
-                        });
-                    }
+                new android.os.Handler().postDelayed(
+                        new Runnable() {
+                            public void run() {
+                                FirebaseClient.getRoot().createUser(user.getEmail(), etPassword.getText().toString(), new Firebase.ValueResultHandler<Map<String, Object>>() {
+                                    @Override
+                                    public void onSuccess(final Map<String, Object> stringObjectMap) {
+                                        User user = new User();
+                                        mFirebaseClient.runTransaction(new Transaction.Handler() {
+                                            @Override
+                                            public Transaction.Result doTransaction(MutableData currentData) {
+                                                return Transaction.success(currentData); //we can also abort by calling Transaction.abort()
+                                            }
 
-                    @Override
-                    public void onError(FirebaseError firebaseError) {
-                        btnRegistry.setVisibility(View.VISIBLE);
-                        Toast.makeText(getApplicationContext(), "Email have been registered", Toast.LENGTH_LONG);
-                    }
-                });
+                                            @Override
+                                            public void onComplete(FirebaseError firebaseError, boolean committed, DataSnapshot currentData) {
+                                                //This method will be called once with the results of the transaction.
+                                                if (firebaseError != null) {
+                                                    System.out.println("Firebase counter increment failed.");
+                                                } else {
+                                                    User user = new User();
+                                                    long id = currentData.getChildrenCount();
+                                                    user.setId_user(id + 1);
+                                                    user.setAddress_user(etAddressuser.getText().toString());
+                                                    user.setCreated_at(System.currentTimeMillis());
+                                                    user.setFullname(etFullname.getText().toString());
+                                                    String location = "";
+                                                    if (currentLocation != null)
+                                                        location = String.valueOf(currentLocation.getLatitude()) + "," + String.valueOf(currentLocation.getLongitude());
+                                                    user.setLocation(location);
+                                                    user.setPhonenumber(etPhonenumber.getText().toString());
+                                                    user.setProfile_image(imageResponse.data.link);
+                                                    Firebase mUserFirebase = mFirebaseClient.child(stringObjectMap.get("uid").toString());
+                                                    mUserFirebase.setValue(user);
+                                                    AuthorHelper.writeString(getApplicationContext(), "uid", stringObjectMap.get("uid").toString());
+                                                    Toast.makeText(getApplicationContext(), getResources().getText(R.string.registry_success), Toast.LENGTH_LONG).show();
+                                                    //
+                                                    Intent intent = new Intent();
+                                                    intent.putExtra("user", Parcels.wrap(user));
+                                                    setResult(Constant.REGISTRY_SUCCESS_CODE, intent);
+                                                    finish();//finishing activity
+                                                }
+                                            }
+                                        });
+                                    }
+
+                                    @Override
+                                    public void onError(FirebaseError firebaseError) {
+                                        btnRegistry.setVisibility(View.VISIBLE);
+                                        Toast.makeText(getApplicationContext(), "Email have been registered", Toast.LENGTH_LONG);
+                                    }
+                                });
+                                progressDialog.dismiss();
+                            }
+                        }, 3000);
 
             }
         }).Execute(upload, new UiCallback());
+
+
+
     }
 
     void getCurrentLocation() {
