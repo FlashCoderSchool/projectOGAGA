@@ -41,7 +41,7 @@ public class ProductRecyclerViewAdapter extends FirebaseRecyclerAdapter<Product,
             statusMsg += "s";
             viewHolder.productStatus.setText(statusMsg);
             viewHolder.productStatus.setTextColor(Color.BLUE);
-        } else if (product.countDays() == 0){
+        } else if (product.countDays() == 0) {
             viewHolder.productStatus.setText("FRESH");
             viewHolder.productStatus.setTextColor(Color.GREEN);
         } else {

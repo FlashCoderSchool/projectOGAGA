@@ -1,24 +1,6 @@
 package com.ogaga.flash.models;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.provider.SyncStateContract;
-
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.MutableData;
-import com.firebase.client.Query;
-import com.firebase.client.Transaction;
-import com.firebase.client.ValueEventListener;
-import com.firebase.client.core.Constants;
-import com.ogaga.flash.clients.FirebaseClient;
-import com.ogaga.flash.imgurmodel.ImageResponse;
-
 import org.parceler.Parcel;
-import org.parceler.ParcelConstructor;
-
-import java.util.List;
 
 
 /**
@@ -36,8 +18,9 @@ public class User {
     private long success_transaction;
     private long created_at;
     private String email;
+
     public String getEmail() {
-        return this.phonenumber+"@ogaga.com";
+        return this.phonenumber + "@ogaga.com";
     }
 
     public String getFullname() {

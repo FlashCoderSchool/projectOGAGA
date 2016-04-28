@@ -3,17 +3,12 @@ package com.ogaga.flash.acitivies;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.opengl.Visibility;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -21,28 +16,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.ogaga.flash.utils.DividerItemDecoration;
+
 import com.ogaga.flash.utils.SpacesItemDecoration;
 import com.firebase.client.Firebase;
 import com.ogaga.flash.R;
 import com.ogaga.flash.adapters.CategoryAdapter;
 import com.ogaga.flash.clients.FirebaseClient;
-import com.ogaga.flash.clients.ImgurClient;
 import com.ogaga.flash.extra.Constant;
 import com.ogaga.flash.helpers.AuthorHelper;
-import com.ogaga.flash.helpers.DocumentHelper;
-import com.ogaga.flash.imgurmodel.ImageResponse;
-import com.ogaga.flash.imgurmodel.Upload;
-import com.ogaga.flash.models.Catalogies;
-import com.ogaga.flash.models.UiCallback;
 import com.ogaga.flash.models.User;
 import com.squareup.picasso.Picasso;
-import com.ogaga.flash.utils.RecyclerItemClickListener;
 
 import org.parceler.Parcels;
-
-import java.io.File;
-import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -64,7 +49,7 @@ public class CatalogiesActivity extends AppCompatActivity {
     DrawerLayout mDrawer;
     @Bind(R.id.nvView)
     NavigationView nvDrawer;
-    @Bind(R.id.fabSell)
+    @Bind(R.id.fabBuy)
     FloatingActionButton fabSell;
     /////////////////
     TextView tvNavPhonenumber;

@@ -1,7 +1,6 @@
 package com.ogaga.flash.acitivies;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,49 +29,55 @@ import butterknife.OnClick;
 public class ProductDetailActivity extends AppCompatActivity {
     Product mProduct;
     User mUser;
-    @Bind(R.id.fabSell)
-    FloatingActionButton fab;
-    @Bind(R.id.ivProductDetailImage)ImageView ivProductDetailImage;
-    @Bind(R.id.tvProductDetailName)TextView tvProductDetailName;
-    @Bind(R.id.tvProductDetailOrigin)TextView tvProductDetailOrigin;
-    @Bind(R.id.tvProductDetailPrice)TextView tvProductDetailPrice;
-    @Bind(R.id.tvFullName)TextView tvFullName;
+    //    @Bind(R.id.fabBuy)
+//    FloatingActionButton fab;
+    @Bind(R.id.ivProductDetailImage)
+    ImageView ivProductDetailImage;
+    @Bind(R.id.tvProductDetailName)
+    TextView tvProductDetailName;
+    @Bind(R.id.tvProductDetailOrigin)
+    TextView tvProductDetailOrigin;
+    @Bind(R.id.tvProductDetailPrice)
+    TextView tvProductDetailPrice;
+    @Bind(R.id.tvFullName)
+    TextView tvFullName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
         ButterKnife.bind(this);
-        mProduct= Parcels.unwrap(getIntent().getParcelableExtra("product"));
-        mUser= Parcels.unwrap(getIntent().getParcelableExtra("user"));
+        mProduct = Parcels.unwrap(getIntent().getParcelableExtra("product"));
+        mUser = Parcels.unwrap(getIntent().getParcelableExtra("user"));
         setupContent();
     }
 
     private void setupContent() {
         Picasso.with(getApplicationContext()).load(mProduct.getUrl()).placeholder(R.drawable.im_placeholder).into(ivProductDetailImage);
         tvProductDetailName.setText(mProduct.getName());
-        tvProductDetailOrigin.setText(mUser.getAddress_user());
+//        tvProductDetailOrigin.setText(mUser.getAddress_user());
         tvProductDetailPrice.setText(String.valueOf(mProduct.getPrices()));
-        tvFullName.setText(mUser.getFullname());
+//        tvFullName.setText(mUser.getFullname());
     }
 
-    @OnClick(R.id.fabSell)
-    public void onClickOrder(View view){
-        if (mProduct.getUserSell().getId_user()==mUser.getId_user()){
-            final OrderViewFragment settingFragment=new OrderViewFragment();
-            Bundle bundle=new Bundle();
-            bundle.putParcelable("product",Parcels.wrap(mProduct));
+    @OnClick(R.id.fabBuy)
+    public void onClickOrder(View view) {
+        if (mProduct.getUserSell().getId_user() == mUser.getId_user()) {
+            final OrderViewFragment settingFragment = new OrderViewFragment();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("product", Parcels.wrap(mProduct));
             settingFragment.setArguments(bundle);
-            settingFragment.show(getFragmentManager(),"orderView");
-        }else{
-            final OrderProductFragment settingFragment=new OrderProductFragment();
-            Bundle bundle=new Bundle();
-            bundle.putParcelable("product",Parcels.wrap(mProduct));
+            settingFragment.show(getFragmentManager(), "orderView");
+        } else {
+            final OrderProductFragment settingFragment = new OrderProductFragment();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("product", Parcels.wrap(mProduct));
             settingFragment.setArguments(bundle);
-            final Firebase firebaseOrders=FirebaseClient.getProduct().child(String.valueOf(mProduct.getId())).child("orders");
+            final Firebase firebaseOrders = FirebaseClient.getProduct().child(String.valueOf(mProduct.getId())).child("orders");
             settingFragment.setOnOrderListener(new OrderProductFragment.OnOrderListener() {
                                                    @Override
                                                    public void onOrder(Integer count) {
-                                                       final Integer orderCount=count;
+                                                       final Integer orderCount = count;
                                                        firebaseOrders.runTransaction(new Transaction.Handler() {
 
                                                            @Override
@@ -90,17 +95,15 @@ public class ProductDetailActivity extends AppCompatActivity {
                                                                order.setId_product(mProduct.getId());
 
                                                                //firebaseOrders.setValue(String.valueOf(dataSnapshot.getChildrenCount()+1));
-                                                               Firebase firebaseOrder = firebaseOrders.child(String.valueOf(dataSnapshot.getChildrenCount()+1));
+                                                               Firebase firebaseOrder = firebaseOrders.child(String.valueOf(dataSnapshot.getChildrenCount() + 1));
                                                                firebaseOrder.setValue(order);
                                                            }
                                                        });
 
                                                    }
                                                }
-
             );
-            settingFragment.show(getFragmentManager(),"orderProduct");
-          }
+            settingFragment.show(getFragmentManager(), "orderProduct");
         }
-
     }
+}
