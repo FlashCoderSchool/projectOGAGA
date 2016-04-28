@@ -71,10 +71,9 @@
         >
 
         <ImageView android:src="@drawable/logo2"
-            android:layout_width="220dp"
-            android:layout_height="120dp"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
             android:layout_marginBottom="60dp"
-            android:scaleType="fitXY"
             android:layout_gravity="center_horizontal" />
 
         <!-- Email Label -->
@@ -85,9 +84,9 @@
             android:layout_marginBottom="8dp">
             <EditText
                 android:id="@+id/etPhonenumber"
-                android:inputType="phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
                 android:textSize="@dimen/font_size_medium"
                 android:hint="@string/phonenumber" />
         </android.support.design.widget.TextInputLayout>

@@ -1,6 +1,5 @@
 package com.ogaga.flash.acitivies;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -8,28 +7,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import android.widget.Toast;
-
-
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.MutableData;
 import com.firebase.client.Transaction;
-
 import com.ogaga.flash.R;
 import com.ogaga.flash.clients.FirebaseClient;
 import com.ogaga.flash.fragments.OrderProductFragment;
 import com.ogaga.flash.fragments.OrderViewFragment;
-
-import com.ogaga.flash.clients.ImgurClient;
-import com.ogaga.flash.extra.Constant;
-import com.ogaga.flash.fragments.OrderProductFragment;
-import com.ogaga.flash.R;
-import com.ogaga.flash.clients.FirebaseClient;
-import com.ogaga.flash.fragments.OrderViewFragment;
-import com.ogaga.flash.helpers.AuthorHelper;
-
 import com.ogaga.flash.models.Order;
 import com.ogaga.flash.models.Product;
 import com.ogaga.flash.models.User;
@@ -46,12 +32,10 @@ public class ProductDetailActivity extends AppCompatActivity {
     User mUser;
     @Bind(R.id.fabSell)
     FloatingActionButton fab;
-
     @Bind(R.id.ivProductDetailImage)ImageView ivProductDetailImage;
     @Bind(R.id.tvProductDetailName)TextView tvProductDetailName;
     @Bind(R.id.tvProductDetailOrigin)TextView tvProductDetailOrigin;
     @Bind(R.id.tvProductDetailPrice)TextView tvProductDetailPrice;
-
     @Bind(R.id.tvFullName)TextView tvFullName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,22 +50,13 @@ public class ProductDetailActivity extends AppCompatActivity {
     private void setupContent() {
         Picasso.with(getApplicationContext()).load(mProduct.getUrl()).placeholder(R.drawable.im_placeholder).into(ivProductDetailImage);
         tvProductDetailName.setText(mProduct.getName());
-        tvProductDetailOrigin.setText(mProduct.getUserSell().getAddress_user());
+        tvProductDetailOrigin.setText(mUser.getAddress_user());
         tvProductDetailPrice.setText(String.valueOf(mProduct.getPrices()));
-    /*  Picasso.with(getApplicationContext()).load(mProduct.getUrl()).placeholder(R.drawable.im_placeholder).into(ivProductDetailImage);
-        tvProductDetailName.setText(mProduct.getName());
-        tvProductDetailOrigin.setText(mProduct.getUserSell().getAddress_user());
-        tvProductDetailPrice.setText(String.valueOf(mProduct.getPrices()));*/
-        tvFullName.setText(mProduct.getUserSell().getFullname());
+        tvFullName.setText(mUser.getFullname());
     }
 
     @OnClick(R.id.fabSell)
     public void onClickOrder(View view){
-        if(mUser==null){
-            Intent intentUserProfile = new Intent(ProductDetailActivity.this, LoginActivity.class);
-            startActivityForResult(intentUserProfile, Constant.LOGIN_SUCCESS_CODE);
-            return;
-        }
         if (mProduct.getUserSell().getId_user()==mUser.getId_user()){
             final OrderViewFragment settingFragment=new OrderViewFragment();
             Bundle bundle=new Bundle();
@@ -127,14 +102,5 @@ public class ProductDetailActivity extends AppCompatActivity {
             settingFragment.show(getFragmentManager(),"orderProduct");
           }
         }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constant.LOGIN_SUCCESS_CODE) {
-            if (data != null) {
-                mUser=Parcels.unwrap(data.getParcelableExtra("user"));
-            }
-        } else { // Result was a failure
-            Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
-        }
-    }
+
     }

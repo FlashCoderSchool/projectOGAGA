@@ -32,7 +32,7 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Product,ProductAdapt
         viewHolder.tvProductName.setText(product.getName());
         //holder.ivImage.setImageResource(cate.getLocalImage());
         Picasso.with(context).load(product.getUrl()).placeholder(R.drawable.im_placeholder).into(viewHolder.ivProductImage);
-        Picasso.with(context).load(product.getUserSell().getProfile_image()).placeholder(R.drawable.im_placeholder).into(viewHolder.ivProductImage);
+//        Picasso.with(context).load(product.getUserSell().getProfile_image()).placeholder(R.drawable.im_placeholder).into(viewHolder.ivProductImage);
         /*viewHolder.tvProductOrigin.setText(product.getUser().getAddress_user());*/
     }
 
@@ -41,19 +41,17 @@ public class ProductAdapter extends FirebaseRecyclerAdapter<Product,ProductAdapt
         @Bind(R.id.ivProductImage)ImageView ivProductImage;
         @Bind(R.id.tvProductName) TextView tvProductName;
         @Bind(R.id.tvProducer) TextView tvProducer;
-//        @Bind(R.id.tvProductOrigin) TextView tvProductOrigin;
-//        @Bind(R.id.ivProductStatus) ImageView ivProductStatusImage;
-
-        //@Bind(R.id.tvProductOrigin) TextView tvProductOrigin;
+        @Bind(R.id.tvProductOrigin) TextView tvProductOrigin;
         @Bind(R.id.tvProductPrice) TextView tvProductPrice;
-        //@Bind(R.id.ivProductStatus) ImageView ivProductStatusImage;
-
+//        @Bind(R.id.ivProductStatus) ImageView ivProductStatusImage;
         @Bind(R.id.tvProductStatus) TextView tvProductStatus;
-        @Bind(R.id.rivProducerPhoto)
+//        @Bind(R.id.rivProducerPhoto)
         RoundedImageView rivProducerPhoto;
         public ViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, v);
         }
     }
+
+
 }

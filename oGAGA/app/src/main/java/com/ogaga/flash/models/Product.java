@@ -145,4 +145,7 @@ public class Product {
         this.userSell = userSell;
         this.orders = orders;
     }
+    public long countDays(){
+        return finished_date - start_date;
+    }
 }

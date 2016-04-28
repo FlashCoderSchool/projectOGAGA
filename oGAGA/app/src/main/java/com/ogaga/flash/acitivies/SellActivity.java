@@ -121,8 +121,8 @@ public class SellActivity extends AppCompatActivity{
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                // trDateFinished.setVisibility(View.VISIBLE);
               //  trDateStart.setVisibility(View.VISIBLE);
-                //etDateFinished.setVisibility(View.VISIBLE);
-                //etDateStart.setVisibility(View.VISIBLE);
+                etDateFinished.setVisibility(View.VISIBLE);
+                etDateStart.setVisibility(View.VISIBLE);
                 switch (position) {
                     case 0: {
                         //trDateFinished.setVisibility(View.VISIBLE);
@@ -134,9 +134,8 @@ public class SellActivity extends AppCompatActivity{
                     case 1: {
                         //trDateStart.setVisibility(View.INVISIBLE);
                         mStartDate=System.currentTimeMillis();
-                        etDateFinished.setVisibility(View.INVISIBLE);
                         etDateStart.setVisibility(View.VISIBLE);
-                        break;
+                        etDateFinished.setVisibility(View.VISIBLE);
                         // trDateFinished.setVisibility(View.VISIBLE);
 
                     }
@@ -145,9 +144,9 @@ public class SellActivity extends AppCompatActivity{
                         //trDateFinished.setVisibility(View.INVISIBLE);
                         mStartDate=System.currentTimeMillis();
                         mFinishedDate=System.currentTimeMillis();
-                        etDateStart.setVisibility(View.INVISIBLE);
-                        etDateFinished.setVisibility(View.INVISIBLE);
-                        break;
+                        etDateStart.setVisibility(View.VISIBLE);
+                        etDateFinished.setVisibility(View.VISIBLE);
+
                     }
                 }
             }

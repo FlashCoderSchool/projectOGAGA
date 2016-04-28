@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.ogaga.flash.R;
 import com.ogaga.flash.acitivies.ProductDetailActivity;
 import com.ogaga.flash.models.Product;
@@ -20,38 +19,42 @@ import butterknife.ButterKnife;
 /**
  * Created by IceStone on 4/24/2016.
  */
-public class ProductItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-
+public class ProductItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     @Bind(R.id.ivProductImage)
     ImageView productImage;
-    @Bind(R.id.tvProductName) TextView productName;
-    @Bind(R.id.rivProducerPhoto)
-    RoundedImageView producerPhoto;
-    @Bind(R.id.tvProducer) TextView producer;
-//    @Bind(R.id.tvProductOrigin) TextView productOrigin;
-    @Bind(R.id.tvProductPrice) TextView productPrice;
-//    @Bind(R.id.ivProductStatus) ImageView productStatusImage;
-    @Bind(R.id.tvProductStatus) TextView productStatus;
+    @Bind(R.id.tvProductName)
+    TextView productName;
+    @Bind(R.id.tvProducer)
+    TextView producer;
+    @Bind(R.id.tvProductOrigin)
+    TextView productOrigin;
+    @Bind(R.id.tvProductPrice)
+    TextView productPrice;
+    //    @Bind(R.id.ivProductStatus) ImageView productStatusImage;
+    @Bind(R.id.tvProductStatus)
+    TextView productStatus;
     Product mProduct;
     User mUser;
+
     public ProductItemViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
         itemView.setOnClickListener(this);
     }
 
-    public void bind(Product product){
-        this.mProduct=product;
+    public void bind(Product product) {
+        this.mProduct = product;
     }
-    public void bindUser(User user){
-        mUser=user;
+
+    public void bindUser(User user) {
+        mUser = user;
     }
+
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(v.getContext(), ProductDetailActivity.class);
         intent.putExtra("product", Parcels.wrap(mProduct));
-        intent.putExtra("user",Parcels.wrap(mUser));
+        intent.putExtra("user", Parcels.wrap(mUser));
         v.getContext().startActivity(intent);
     }
 
