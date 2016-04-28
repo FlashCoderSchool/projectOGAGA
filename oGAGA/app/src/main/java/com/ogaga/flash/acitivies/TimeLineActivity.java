@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.firebase.client.Query;
@@ -17,7 +16,6 @@ import com.ogaga.flash.adapters.ProductRecyclerViewAdapter;
 import com.ogaga.flash.clients.FirebaseClient;
 import com.ogaga.flash.models.Catalogies;
 import com.ogaga.flash.models.User;
-import com.ogaga.flash.utils.RecyclerItemClickListener;
 
 import org.parceler.Parcels;
 
@@ -44,9 +42,11 @@ public class TimeLineActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         mCatalogies= Parcels.unwrap(getIntent().getParcelableExtra("catalogies"));
         mUser= Parcels.unwrap(getIntent().getParcelableExtra("user"));
+
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(mCatalogies.getName());
 
 
 

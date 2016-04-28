@@ -1,5 +1,6 @@
 package com.ogaga.flash.acitivies;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -35,12 +36,15 @@ public class ProductDetailActivity extends AppCompatActivity {
     ImageView ivProductDetailImage;
     @Bind(R.id.tvProductDetailName)
     TextView tvProductDetailName;
+    @Bind(R.id.tvProductDetailStatus)
+    TextView tvProductDetailStatus;
+    @Bind(R.id.tvProductDetailDesciption)
+    TextView tvProductDetailDescription;
     @Bind(R.id.tvProductDetailOrigin)
     TextView tvProductDetailOrigin;
     @Bind(R.id.tvProductDetailPrice)
     TextView tvProductDetailPrice;
-    @Bind(R.id.tvFullName)
-    TextView tvFullName;
+    @Bind(R.id.iv_Producer_Avatar) ImageView ivProducerPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +53,37 @@ public class ProductDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         mProduct = Parcels.unwrap(getIntent().getParcelableExtra("product"));
         mUser = Parcels.unwrap(getIntent().getParcelableExtra("user"));
+
         setupContent();
     }
 
     private void setupContent() {
         Picasso.with(getApplicationContext()).load(mProduct.getUrl()).placeholder(R.drawable.im_placeholder).into(ivProductDetailImage);
         tvProductDetailName.setText(mProduct.getName());
-//        tvProductDetailOrigin.setText(mUser.getAddress_user());
         tvProductDetailPrice.setText(String.valueOf(mProduct.getPrices()));
+        //Status
+        String stsMsg = String.valueOf(mProduct.countDays()) + " day";
+        if (mProduct.countDays() > 1) {
+            stsMsg += "s";
+            tvProductDetailStatus.setText(stsMsg);
+            tvProductDetailStatus.setTextColor(Color.BLUE);
+        } else if (mProduct.countDays() == 0) {
+            tvProductDetailStatus.setText("FRESH");
+            tvProductDetailStatus.setTextColor(Color.GREEN);
+        } else {
+            stsMsg += "s";
+            tvProductDetailStatus.setText(stsMsg);
+            tvProductDetailStatus.setTextColor(Color.RED);
+        }
+        //Description
+        //
+        // Producer Image
+        Picasso.with(getApplicationContext()).load(mProduct.getUserSell().getProfile_image()).placeholder(R.drawable.im_placeholder).into(ivProducerPhoto);
+        //
+        tvProductDetailOrigin.setText(mProduct.getUserSell().getAddress_user());
+//        tvProductDetailStatus.setText();
 //        tvFullName.setText(mUser.getFullname());
+        //        tvProductDetailOrigin.setText(mUser.getAddress_user());
     }
 
     @OnClick(R.id.fabBuy)

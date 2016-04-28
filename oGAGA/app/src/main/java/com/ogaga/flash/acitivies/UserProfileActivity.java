@@ -31,7 +31,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class UserProfileActivity extends AppCompatActivity {
     User mUser;
     @Bind(R.id.ivUser)ImageView ivUser;
-    @Bind(R.id.tvFullName)TextView tvFullName;
+    @Bind(R.id.tvProductDetailDesciption)TextView tvFullName;
     @Bind(R.id.tvPhonenumber)TextView tvPhonenumber;
     @Bind(R.id.tvCountTrans)TextView tvCountTrans;
     @Bind(R.id.toolbarHeader)

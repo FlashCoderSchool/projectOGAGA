@@ -8,13 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
-import com.firebase.client.Query;
 import com.firebase.ui.FirebaseRecyclerAdapter;
 import com.ogaga.flash.R;
 import com.ogaga.flash.extra.Constant;
-import com.ogaga.flash.helpers.DocumentHelper;
 import com.ogaga.flash.models.Order;
-import com.ogaga.flash.models.Product;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
@@ -53,7 +50,7 @@ public class OrderAdapter  extends FirebaseRecyclerAdapter<Order,OrderAdapter.Vi
     public static class ViewHolder extends RecyclerView.ViewHolder {
         Order mOrder;
         @Bind(R.id.ivAvatar)ImageView ivAvatar;
-        @Bind(R.id.tvFullName)TextView tvFullName;
+        @Bind(R.id.tvProductDetailDesciption)TextView tvFullName;
         @Bind(R.id.tvPhonenumber) TextView tvPhonenumber;
         @Bind(R.id.tvOrderCount) TextView tvOrderCount;
         @Bind(R.id.tvOrderTotal) TextView tvOrderTotal;
